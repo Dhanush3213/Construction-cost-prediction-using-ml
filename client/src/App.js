@@ -11,7 +11,7 @@ import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./ErrorPage";
-import Login from "./Login";
+import Login from "./Pages/Login";
 
 
 const App = () => {
