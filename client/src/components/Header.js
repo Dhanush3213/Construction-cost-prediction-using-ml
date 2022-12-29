@@ -6,27 +6,27 @@ import styled from 'styled-components';
 
 const MainHeader = styled.header`
   padding: 0 4.8rem;
-  height: 10rem;
+  height: 8rem;
   background-color: ${({ theme }) => theme.colors.bg};
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   .logo {
-    height: 5rem;
+    height: 6rem;
   }
 `;
 
 const Header = () => {
 
-    return (
-        <MainHeader>
-            <NavLink to="/">
-                <img src="/images/logo.png" className='logo' />
-            </NavLink>
-            <Nav />
-        </MainHeader>
-    )
+  return (
+    <MainHeader>
+      <NavLink to="/">
+        <img src="/images/logo.png" className='logo' />
+      </NavLink>
+      <Nav />
+    </MainHeader>
+  )
 }
 
 export default Header

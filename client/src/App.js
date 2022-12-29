@@ -26,7 +26,8 @@ const App = () => {
 
       bg: "#F6F8FA",
       footer_bg: "#0a1435",
-      btn: "rgb(98 84 243)",
+      // btn: "rgb(98 84 243)",
+      btn: "#035bc7",
       border: "rgba(98, 84, 243, 0.5)",
       hr: "#ffffff",
       gradient:

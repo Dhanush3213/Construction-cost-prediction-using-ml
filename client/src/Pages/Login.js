@@ -99,7 +99,7 @@ img {
     font-size: 1.5rem;
     font-weight: 400;
     color: #121212;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.8rem;
 }
 
 .text-links {

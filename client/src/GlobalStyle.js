@@ -161,6 +161,7 @@ input, textarea{
     border-width: .1rem;
     text-transform: uppercase;
     font-size: 1.8rem;
+    border-radius: 6px;
     cursor: pointer;
     }
 

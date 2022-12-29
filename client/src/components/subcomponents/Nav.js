@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { BsHandbag } from "react-icons/bs";
+
 import { CgMenu, CgClose } from "react-icons/cg";
 
 
