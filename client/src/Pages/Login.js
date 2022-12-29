@@ -26,7 +26,7 @@ const Login = () => {
         font-size: 1rem;
         font-weight: normal;
         line-height: 1.5;
-        color: #121212;
+        color: #121212; 
         background: #f1f5f9;
       }      
            
