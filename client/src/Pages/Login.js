@@ -26,7 +26,7 @@ const Login = () => {
         font-size: 1rem;
         font-weight: normal;
         line-height: 1.5;
-        color: #121212;
+        color: #121212; 
         background: #f1f5f9;
       }      
            
@@ -99,7 +99,7 @@ img {
     font-size: 1.5rem;
     font-weight: 400;
     color: #121212;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.8rem;
 }
 
 .text-links {

@@ -1,0 +1,84 @@
+[
+    {
+        "name": "super dulex villa",
+        "owener_deatils": {
+            "name": "ganesh shetty",
+            "phone_number": 8496952366,
+            "location": "banglore"
+        },
+        "price": 15400000,
+        "featured": true,
+        "company": "sri ganesh constructions"
+    },
+    {
+        "name": "normal 1020sq",
+        "owener_deatils": {
+            "name": "ganesh shetty",
+            "phone_number": 8496952366,
+            "location": "banglore"
+        },
+        "price": 110000,
+        "featured": true,
+        "company": "pro build constructions"
+    },
+    {
+        "name": "normal double floor",
+        "owener_deatils": {
+            "name": "ganesh shetty",
+            "phone_number": 8496952366,
+            "location": "banglore"
+        },
+        "price": 200000,
+        "company": "infra construction group"
+    },
+    {
+        "name": "double balcony",
+        "owener_deatils": {
+            "name": "ganesh shetty",
+            "phone_number": 8496952366,
+            "location": "banglore"
+        },
+        "price": 3040000,
+        "company": "sri ganesh construction"
+    },
+    {
+        "name": "super dulexe double balcony",
+        "owener_deatils": {
+            "name": "ganesh shetty",
+            "phone_number": 8496952366,
+            "location": "banglore"
+        },
+        "price": 40000300,
+        "company": "infra construction group"
+    },
+    {
+        "name": "pent house",
+        "owener_deatils": {
+            "name": "ganesh shetty",
+            "phone_number": 8496952366,
+            "location": "banglore"
+        },
+        "price": 5000000,
+        "company": "sri ganesh construction"
+    },
+    {
+        "name": "simple 3BHK",
+        "owener_deatils": {
+            "name": "ganesh shetty",
+            "phone_number": 8496952366,
+            "location": "banglore"
+        },
+        "price": 10054000,
+        "company": "pro build construction"
+    },
+    {
+        "name": "dulexe 4BHK",
+        "owener_deatils": {
+            "name": "ganesh shetty",
+            "phone_number": 8496952366,
+            "location": "banglore"
+        },
+        "price": 70000000,
+        "company": "infra construction group"
+    }
+]
