@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React, { useState } from "react";
 
 const Contact = () => {
   const Wrapper = styled.section`
@@ -34,6 +35,7 @@ const Contact = () => {
     }
   `;
 
+
   return (
     <Wrapper>
       <h2 className="common-heading">Contact page</h2>
@@ -49,6 +51,7 @@ const Contact = () => {
               placeholder="username"
               name="username"
               required
+              min="4"
               autoComplete="off"
             />
 
@@ -65,6 +68,7 @@ const Contact = () => {
               cols="30"
               rows="10"
               required
+              min="10"
               autoComplete="off"
               placeholder="Enter you message"></textarea>
 
