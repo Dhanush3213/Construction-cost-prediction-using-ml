@@ -27,3 +27,7 @@ class JWT(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Home(models.Model):
+    image = models.ImageField(upload_to='homes')
+    price = models.DecimalField(max_digits=8, decimal_places=2)

@@ -70,9 +70,13 @@ from django.shortcuts import render
 from .serializers import MySerializer,HomePriceSerializer
 from .models import HomePrice
 import numpy as np
+import pandas as pd
 import joblib
 from django.contrib.auth import authenticate
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Home
+from .serializers import HomeSerializer
 #rest_frameworf imports
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -84,38 +88,9 @@ from .authentication import get_access_token, MyAuthentication
 from .models import JWT
 
 # Load the pre-trained model
-model = joblib.load('D://final year project/datasets/another dataset/bangalore_home_prices_model.pickle')
-Col_Name=('total_sqft','bath','bhk','1st Block Jayanagar','1st Phase JP Nagar','2nd Phase Judicial Layout','2nd Stage Nagarbhavi','5th Block Hbr Layout','5th Phase JP Nagar','6th Phase JP Nagar','7th Phase JP Nagar','8th Phase JP Nagar','9th Phase JP Nagar','AECS Layout','Abbigere','Akshaya Nagar','Ambalipura','Ambedkar Nagar','Amruthahalli','Anandapura','Ananth Nagar','Anekal','Anjanapura','Ardendale','Arekere','Attibele','BEML Layout','BTM 2nd Stage','BTM Layout','Babusapalaya','Badavala Nagar','Balagere','Banashankari','Banashankari Stage II','Banashankari Stage III','Banashankari Stage V','Banashankari Stage VI','Banaswadi','Banjara Layout','Bannerghatta','Bannerghatta Road','Basavangudi','Basaveshwara Nagar','Battarahalli','Begur','Begur Road','Bellandur','Benson Town','Bharathi Nagar','Bhoganhalli','Billekahalli','Binny Pete','Bisuvanahalli','Bommanahalli','Bommasandra','Bommasandra Industrial Area','Bommenahalli','Brookefield','Budigere','CV Raman Nagar','Chamrajpet','Chandapura','Channasandra','Chikka Tirupathi','Chikkabanavar','Chikkalasandra','Choodasandra','Cooke Town','Cox Town','Cunningham Road','Dasanapura','Dasarahalli','Devanahalli','Devarachikkanahalli','Dodda Nekkundi','Doddaballapur','Doddakallasandra','Doddathoguru','Domlur','Dommasandra','EPIP Zone','Electronic City','Electronic City Phase II','Electronics City Phase 1','Frazer Town','GM Palaya','Garudachar Palya','Giri Nagar','Gollarapalya Hosahalli','Gottigere','Green Glen Layout','Gubbalala','Gunjur','HAL 2nd Stage','HBR Layout','HRBR Layout','HSR Layout','Haralur Road','Harlur','Hebbal','Hebbal Kempapura','Hegde Nagar','Hennur','Hennur Road','Hoodi','Horamavu Agara','Horamavu Banaswadi','Hormavu','Hosa Road','Hosakerehalli','Hoskote','Hosur Road','Hulimavu','ISRO Layout','ITPL','Iblur Village','Indira Nagar','JP Nagar','Jakkur','Jalahalli','Jalahalli East','Jigani','Judicial Layout','KR Puram','Kadubeesanahalli','Kadugodi','Kaggadasapura','Kaggalipura','Kaikondrahalli','Kalena Agrahara','Kalyan nagar','Kambipura','Kammanahalli','Kammasandra','Kanakapura','Kanakpura Road','Kannamangala','Karuna Nagar','Kasavanhalli','Kasturi Nagar','Kathriguppe','Kaval Byrasandra','Kenchenahalli','Kengeri','Kengeri Satellite Town','Kereguddadahalli','Kodichikkanahalli','Kodigehaali','Kodigehalli','Kodihalli','Kogilu','Konanakunte','Koramangala','Kothannur','Kothanur','Kudlu','Kudlu Gate','Kumaraswami Layout','Kundalahalli','LB Shastri Nagar','Laggere','Lakshminarayana Pura','Lingadheeranahalli','Magadi Road','Mahadevpura','Mahalakshmi Layout','Mallasandra','Malleshpalya','Malleshwaram','Marathahalli','Margondanahalli','Marsur','Mico Layout','Munnekollal','Murugeshpalya','Mysore Road','NGR Layout','NRI Layout','Nagarbhavi','Nagasandra','Nagavara','Nagavarapalya','Narayanapura','Neeladri Nagar','Nehru Nagar','OMBR Layout','Old Airport Road','Old Madras Road','Padmanabhanagar','Pai Layout','Panathur','Parappana Agrahara','Pattandur Agrahara','Poorna Pragna Layout','Prithvi Layout','R.T. Nagar','Rachenahalli','Raja Rajeshwari Nagar','Rajaji Nagar','Rajiv Nagar','Ramagondanahalli','Ramamurthy Nagar','Rayasandra','Sahakara Nagar','Sanjay nagar','Sarakki Nagar','Sarjapur','Sarjapur  Road','Sarjapura - Attibele Road','Sector 2 HSR Layout','Sector 7 HSR Layout','Seegehalli','Shampura','Shivaji Nagar','Singasandra','Somasundara Palya','Sompura','Sonnenahalli','Subramanyapura','Sultan Palaya','TC Palaya','Talaghattapura','Thanisandra','Thigalarapalya','Thubarahalli','Thyagaraja Nagar','Tindlu','Tumkur Road','Ulsoor','Uttarahalli','Varthur','Varthur Road','Vasanthapura','Vidyaranyapura','Vijayanagar','Vishveshwarya Layout','Vishwapriya Layout','Vittasandra','Whitefield','Yelachenahalli','Yelahanka','Yelahanka New Town','Yelenahalli','Yeshwanthpur')
-Col = np.array(Col_Name)
-x=np.zeros(249)
-  
-@api_view(['POST','GET'])
-def predict_home_price(request):
-    location = request.POST['location']
-    sqft=request.POST['sqft']
-    bath=request.POST['bath']
-    bhk=request.POST['bhk']
-   
-    x=np.zeros(249)
-    x[0]=sqft
-    x[1]=bath
-    x[2]=bhk
-    if location in Col_Name:
-        input_query = np.array([x])
-   
-    data = input_query
-    # Convert input data to a numpy array
-    features = [[data['location'], data['sqft'], data['bath'], data['bhk']]]
-    # Use the pre-trained
-    #  model to predict the home price
-    predicted_price = model.predict(features)[0]
-    # Save the predicted price to the database
-    home_price = HomePrice(location=data['location'], sqft=data['sqft'], bath=data['bath'], bhk=data['bhk'], price=predicted_price)
-    home_price.save()
-    # Return the predicted price in the response
-    return Response({'price': predicted_price})
 
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+  
+
 
 @api_view(['GET'])
 def home_price_list(request):
@@ -204,3 +179,72 @@ def login(request):
         else:
             context['error'] = serializer.errors
             return Response(context, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
+
+
+
+class HomeView(APIView):
+    def get(self, request, min_price=None, max_price=None):
+        queryset = Home.objects.all()
+        if min_price is not None:
+            queryset = queryset.filter(price__gte=min_price)
+        if max_price is not None:
+            queryset = queryset.filter(price__lte=max_price)
+        serializer = HomeSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+
+
+import pickle
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import HomePrice
+
+class HousePricePredictionView(APIView):
+    def get(self, request):
+        # Get all houses from the database
+        houses = HomePrice.objects.all()
+        # Serialize the houses into JSON format
+        data = [{'location': house.location, 'sqft': house.sqft, 'bath':house.bath ,'bhk':house.bhk,'price': house.price} for house in houses]
+        return Response(data)
+  
+
+    def post(self, request):
+        # Load the trained model from a pickle file
+        with open('../APIProject/Prediction/classifier/banglore_home_prices_model.pickle', 'rb') as f:
+            model = pickle.load(f)
+        
+        # Get the input data from the request
+        data = request.data
+        def predict_price(location, sqft, bath, bhk):
+            x = pd.read_csv("D://final year project/construction cost estimation using ml/constructionproj/server/APIProject/Prediction/classifier/train.csv")
+            loc_index = np.where(x.columns == location)[0][0]
+            inputs = np.zeros(len(x.columns))
+    
+            inputs[0] = sqft
+            inputs[1] = bath
+            inputs[2] = bhk
+            if loc_index >= 0:
+                inputs[loc_index] = 1
+            return inputs
+        
+        # Perform prediction using the trained model
+        input_features =predict_price(data['location'], data['sqft'], data['bath'],data['bhk'])
+        prediction = model.predict([input_features])[0]
+        
+        # Save the input data and predicted price to the database
+        house = HomePrice(location=data['location'],  sqft=data['sqft'], bath=data['bath'], bhk=data['bhk'],price=prediction)
+        house.save()
+        
+        # Return the predicted house price as a response
+        return Response({'prediction': prediction})
+
+
+#you have to make train.csv file and load that one and after that you can apply logic and you can able to load all the column values

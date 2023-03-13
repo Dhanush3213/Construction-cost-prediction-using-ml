@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import HomePrice
 from django.contrib.auth.models import User
+from .models import Home
 
 class HomePriceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,6 +15,10 @@ class MySerializer(serializers.Serializer):
     bhk=serializers.IntegerField()
 
 
+class HomeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Home
+        fields = ['id', 'image', 'price']
 
 
 
