@@ -12,7 +12,10 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./ErrorPage";
 import Login from "./Pages/Login";
+
 import SignIn from "./Pages/SignIn";
+import CostEstimation from "./CostEstimation";
+
 
 
 const App = () => {
@@ -56,6 +59,7 @@ const App = () => {
           <Route path="/singleProject/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/costestimation" element={<CostEstimation />}></Route>
 
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>

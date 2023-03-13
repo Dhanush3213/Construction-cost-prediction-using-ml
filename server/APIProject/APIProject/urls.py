@@ -1,7 +1,7 @@
-"""constructionproj URL Configuration
+"""APIProject URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.0/topics/http/urls/
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,17 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from . import views
+from django.urls import path,include
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name='index'),
-    path('signup',views.signup,name='signup'),
-    path('login',views.login,name='login'),
-    path('logoutuser',views.logoutuser,name='logout'),
-    path('sproduct',views.sproduct,name="sproduct"),
-    path('liked',views.liked,name='liked'),
-    path('likedpages',views.likedpages,name='likedpages'),
-    path('productsearch',views.productsearch,name='productsearch'),
-    path('cpass',views.cpass,name='cpass'),
+    path('api/',include('Prediction.urls')),
+    path('', include('django.contrib.auth.urls')),
 ]
