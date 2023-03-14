@@ -1,8 +1,9 @@
 import React from 'react'
 // import "./Login.css"
 import styled from "styled-components";
+import { NavLink } from "react-router-dom"
 
-const SignIn = () => {
+const SignUp = () => {
     const Wrapper = styled.section`
 :root {
          --color-white: #ffffff;
@@ -264,8 +265,8 @@ img {
                         <section className="wrapper">
                             <div className="heading">
                                 <h1 className="text text-large">Create User</h1>
-                                <p className="text text-normal">Exiting user? <span><a href="#" className="text text-links">SignIn</a></span>
-                                </p>
+                                <NavLink to="/login"> <p className="text text-normal">Exiting user? <span><a href="#" className="text text-links">SignIn</a></span>
+                                </p> </NavLink>
                             </div>
                             <form name="signin" className="form">
                                 <div className="input-control">
@@ -322,4 +323,4 @@ img {
     )
 }
 
-export default SignIn
+export default SignUp

@@ -12,7 +12,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./ErrorPage";
 import Login from "./Pages/Login";
-import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
 
 
 const App = () => {
@@ -51,7 +51,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/priceestimator" element={<About />}></Route>
-          <Route path="/contact" element={<SignIn />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/projects" element={<Projects />}></Route>
           <Route path="/singleProject/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 // import "./Login.css"
 import styled from "styled-components";
 
@@ -289,8 +290,10 @@ img {
                         <section className="wrapper">
                             <div className="heading">
                                 <h1 className="text text-large">Sign In</h1>
-                                <p className="text text-normal">New user? <span><a href="#" className="text text-links">Create an account</a></span>
-                                </p>
+                                {/* <NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink> */}
+                                <NavLink to="/signup">  <p className="text text-normal">New user? <span><a href="#" className="text text-links">Create an account</a></span>
+                                </p> </NavLink>
+
                             </div>
                             <form name="signin" className="form">
                                 <div className="input-control">

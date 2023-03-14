@@ -3,7 +3,7 @@ import React from 'react'
 const CostEstimation = () => {
     return (
         <>
-            <h1>CostEstimation</h1>
+            <h1>Ml Integration</h1>
         </>
     )
 }
