@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./Home"
 import About from "./CostEstimation"
@@ -13,10 +13,15 @@ import Footer from "./components/Footer";
 import ErrorPage from "./ErrorPage";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
+// import SignIn from "./Pages/SignIn";
+import CostEstimation from "./CostEstimation";
+import { useAppContext } from "./context/AppContext"
 
 
 const App = () => {
+  const { loginState } = useAppContext();
 
+  console.log("app.js" + loginState);
   const theme = {
     colors: {
       heading: "rgb(24 24 29)",
@@ -43,6 +48,12 @@ const App = () => {
     },
   };
 
+  useEffect(() => {
+    localStorage.setItem("login", JSON.stringify(loginState));
+    let state = JSON.parse(localStorage.getItem("login"));
+    console.log(state);
+  }, [loginState])
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -57,12 +68,15 @@ const App = () => {
           <Route path="/singleProject/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/costestimation" element={<CostEstimation />}></Route>
 
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
     </ThemeProvider>
+
+
   );
 };
 

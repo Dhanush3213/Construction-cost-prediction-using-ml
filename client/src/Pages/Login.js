@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 // import "./Login.css"
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/AppContext"
 
 const Login = () => {
+    const { state, dispatch } = useAppContext();
+
     const Wrapper = styled.section`
 :root {
          --color-white: #ffffff;
@@ -247,6 +251,43 @@ img {
 }  
 
 `
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    // const { state, dispatch } = useContext(UserContext);
+
+    const loginUser = async (e) => {
+        e.preventDefault();
+
+        // we are sending the data to backend(to signin route)server/client/src/components/Login.js
+        const res = await fetch("http://127.0.0.1:8000/token", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+        });
+
+        // res in pending state we can get that  data in by using res.json();
+        const data = await res.json();
+        //  console.log(res.status);
+
+        if (res.status === 400 || !data) {
+            window.alert("Invalid Creadentials");
+        } else {
+
+            dispatch({ type: "USER", payload: true });
+
+            // type is name for the action that is going perfrom in reducer
+            // its like msg we are sending
+            window.alert(" Login Successful ");
+            navigate("/");
+        }
+    }
 
     return (
         // <div className='body'>
@@ -283,62 +324,72 @@ img {
         //         </div>
         //     </div>
         // </div>
-        <Wrapper>
-            <body>
-                <main className="main">
-                    <div className="container-login">
-                        <section className="wrapper">
-                            <div className="heading">
-                                <h1 className="text text-large">Sign In</h1>
-                                {/* <NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink> */}
-                                <NavLink to="/signup">  <p className="text text-normal">New user? <span><a href="#" className="text text-links">Create an account</a></span>
-                                </p> </NavLink>
+        // <Wrapper>
+        <body>
+            <main className="main">
+                <div className="container-login">
+                    <section className="wrapper">
+                        <div className="heading">
+                            <h1 className="text text-large">Sign In</h1>
+                            {/* <NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink> */}
+                            <NavLink to="/signup">  <p className="text text-normal">New user? <span><a href="#" className="text text-links">Create an account</a></span>
+                            </p> </NavLink>
 
+                        </div>
+                        <form name="signin" className="form">
+                            <div className="input-control">
+                                <label for="email" className="input-label" hidden>Email Address</label>
+                                <input type="email" value={email}
+                                    name="email"
+                                    onChange={(e) => {
+                                        // console.log(e.target.value);
+                                        setEmail(e.target.value);
+                                    }} id="email" className="input-field" placeholder="Email Address" />
                             </div>
-                            <form name="signin" className="form">
-                                <div className="input-control">
-                                    <label for="email" className="input-label" hidden>Email Address</label>
-                                    <input type="email" name="email" id="email" className="input-field" placeholder="Email Address" />
-                                </div>
-                                <div className="input-control">
-                                    <label for="password" className="input-label" hidden>Password</label>
-                                    <input type="password" name="password" id="password" className="input-field" placeholder="Password" />
-                                </div>
-                                <div className="input-control">
-                                    <a href="#" className="text text-links forgot">Forgot Password</a>
-                                    <input type="submit" name="submit" className="input-submit" value="Sign In" disabled />
-                                </div>
-                            </form>
-                            <div className="striped">
-                                <span className="striped-line"></span>
-                                <span className="striped-text">Or</span>
-                                <span className="striped-line"></span>
+                            <div className="input-control">
+                                <label for="password" className="input-label" hidden>Password</label>
+                                <input type="password" name="password"
+                                    value={password}
+                                    onChange={(e) => {
+                                        // console.log(e.target.value);
+                                        setPassword(e.target.value);
+                                    }} id="password" className="input-field" placeholder="Password" />
                             </div>
-                            <div className="method">
-                                <div className="method-control">
-                                    <a href="#" className="method-action">
-                                        <i className="ion ion-logo-google"></i>
-                                        <span>Sign in with Google</span>
-                                    </a>
-                                </div>
-                                <div className="method-control">
-                                    <a href="#" className="method-action">
-                                        <i className="ion ion-logo-facebook"></i>
-                                        <span>Sign in with Facebook</span>
-                                    </a>
-                                </div>
-                                <div className="method-control">
-                                    <a href="#" className="method-action">
-                                        <i className="ion ion-logo-apple"></i>
-                                        <span>Sign in with Apple</span>
-                                    </a>
-                                </div>
+                            <div className="input-control">
+                                <a href="#" className="text text-links forgot">Forgot Password</a>
+                                <input type="submit" name="submit" onClick={loginUser} className="input-submit" value="Sign In" disabled />
                             </div>
-                        </section>
-                    </div>
-                </main>
-            </body>
-        </Wrapper>
+                        </form>
+                        <div className="striped">
+                            <span className="striped-line"></span>
+                            <span className="striped-text">Or</span>
+                            <span className="striped-line"></span>
+                        </div>
+                        <div className="method">
+                            <div className="method-control">
+                                <a href="#" className="method-action">
+                                    <i className="ion ion-logo-google"></i>
+                                    <span>Sign in with Google</span>
+                                </a>
+                            </div>
+                            <div className="method-control">
+                                <a href="#" className="method-action">
+                                    <i className="ion ion-logo-facebook"></i>
+                                    <span>Sign in with Facebook</span>
+                                </a>
+                            </div>
+                            <div className="method-control">
+                                <a href="#" className="method-action">
+                                    <i className="ion ion-logo-apple"></i>
+                                    <span>Sign in with Apple</span>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </body>
+        // </Wrapper>
 
     )
 }

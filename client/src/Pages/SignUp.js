@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import "./Login.css"
 import styled from "styled-components";
 import { NavLink } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
+
     const Wrapper = styled.section`
 :root {
          --color-white: #ffffff;
@@ -256,9 +260,58 @@ img {
 }  
 
 `
+    const [user, setuser] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        cpassword: "",
+    });
+
+    let name, value;
+
+    const inputHandlers = (e) => {
+        name = e.target.name;
+        value = e.target.value;
+        setuser({ ...user, [name]: value });
+    };
+
+    //! we are sending data to Register route....
+    const POSTDATA = async (e) => {
+        e.preventDefault();
+        const { name, email, phone, password, cpassword } = user;
+
+
+        const res = await fetch("http://127.0.0.1:8000/api/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            // {"name":"test","email":"test1@gmail.com","phone":"123","work":"wev","password":"123","cpassword":"123"}
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                phone: phone,
+                password: password,
+                cpassword: cpassword,
+            }),
+        });
+
+
+        const data = await res.json();
+
+        if (data.status === 422 || !data) {
+            window.alert("invalid registration");
+            //  console.log("invalid registration");
+        } else {
+            window.alert(" registration successfull u can login");
+            navigate("/Login");
+        }
+    };
 
     return (
-        <Wrapper>
+        // <Wrapper>
+        <main>
             <body>
                 <main className="main">
                     <div className="container-login">
@@ -270,23 +323,32 @@ img {
                             </div>
                             <form name="signin" className="form">
                                 <div className="input-control">
-                                    <label for="email" className="input-label" hidden>Name :</label>
-                                    <input type="email" name="email" id="email" className="input-field" placeholder="Full Name" />
+                                    <label htmlFor="name" className="input-label" hidden>Name :</label>
+                                    <input type="text" name="name" id="name" value={user.name}
+                                        onChange={inputHandlers} className="input-field" placeholder="Full Name" />
                                 </div>
                                 <div className="input-control">
-                                    <label for="email" className="input-label" hidden>Email Address :</label>
-                                    <input type="email" name="email" id="email" className="input-field" placeholder="Email Address" />
+                                    <label htmlFor="email" className="input-label" hidden>Email Address :</label>
+                                    <input type="email" name="email" id="email" value={user.email}
+                                        onChange={inputHandlers} className="input-field" placeholder="Email Address" />
                                 </div>
                                 <div className="input-control">
-                                    <label for="password" className="input-label" hidden>Password</label>
-                                    <input type="password" name="password" id="password" className="input-field" placeholder="Password" />
+                                    <label htmlFor="number" className="input-label" hidden>Password</label>
+                                    <input type="number" name="phone" value={user.phone}
+                                        onChange={inputHandlers} id="phone" className="input-field" placeholder="phone-number" />
                                 </div>
                                 <div className="input-control">
-                                    <label for="Cpassword" className="input-label" hidden>Confirm Password</label>
-                                    <input type="Cpassword" name="Cpassword" id="Cpassword" className="input-field" placeholder="Confirm Password" />
+                                    <label htmlFor="password" className="input-label" hidden>Password</label>
+                                    <input type="password" name="password" value={user.password}
+                                        onChange={inputHandlers} id="password" className="input-field" placeholder="Password" />
+                                </div>
+                                <div className="input-control">
+                                    <label htmlFor="cpassword" className="input-label" hidden>Confirm Password</label>
+                                    <input type="password" name="cpassword" value={user.cpassword}
+                                        onChange={inputHandlers} id="cpassword" className="input-field" placeholder="Confirm Password" />
                                 </div>
                                 <div className="input-control input-control-button ">
-                                    <input type="submit" name="submit" className="input-submit" value="Sign Up" disabled />
+                                    <input type="submit" name="submit" className="input-submit" onClick={POSTDATA} value="Sign Up" disabled />
                                 </div>
                             </form>
                             <div className="striped">
@@ -318,7 +380,8 @@ img {
                     </div>
                 </main>
             </body>
-        </Wrapper>
+        </main>
+        // </Wrapper>
 
     )
 }
