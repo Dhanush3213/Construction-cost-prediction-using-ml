@@ -1,8 +1,5 @@
 #django imports
 from django.contrib.auth import authenticate
-
-#rest_frameworf imports
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -12,8 +9,15 @@ from .authentication import get_access_token, MyAuthentication
 from .models import JWT
 
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .serializers import UserSerializer
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
-
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 #homepage view
 @api_view(['GET'])
@@ -103,30 +107,9 @@ def login(request):
             context['error'] = serializer.errors
             return Response(context, status=status.HTTP_400_BAD_REQUEST)
 
-from rest_framework_simplejwt.tokens import RefreshToken
 
-@api_view(["POST"])
-def logout(request):
-    context = {}
-    if request.method == "POST":
-        try:
-            refresh_token = request.data["refresh_token"]
-            token = JWT.objects.get(token=refresh_token)
-            token.delete()
-            # Blacklist the refresh token to prevent it from being used again
-            RefreshToken(refresh_token).blacklist()
-            context['message'] = 'Logout successful!'
-            return Response(context, status=status.HTTP_200_OK)
-        except JWT.DoesNotExist:
-            context['error'] = 'Invalid refresh token, please try again'
-            return Response(context, status=status.HTTP_400_BAD_REQUEST)
         
-from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
+
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
@@ -144,12 +127,7 @@ def update_password(request):
         context['error'] = form.errors
         return Response(context, status=status.HTTP_400_BAD_REQUEST)
 
-from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from .models import JWT
+
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
@@ -165,14 +143,6 @@ def logout(request):
         context['error'] = str(e)
         return Response(context, status=status.HTTP_400_BAD_REQUEST)
 
-
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from .serializers import UserSerializer
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])

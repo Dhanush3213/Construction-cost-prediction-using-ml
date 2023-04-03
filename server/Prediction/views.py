@@ -9,6 +9,8 @@ from .models import HomePrice
 from rest_framework import status
 from rest_framework.decorators import api_view
 from .serializers import MySerializer,HomePriceSerializer
+from django.conf import settings
+import requests
 
 
 # Create your views here.
@@ -70,4 +72,23 @@ def home_price_detail(request, pk):
 
 
 
+
+class LocationMapView(APIView):
+    
+    def get(self, request, *args, **kwargs):
+        location = request.GET.get('location')
+        if not location:
+            return Response({'error': 'Location parameter is required.'}, status=400)
+        # call external API to get location details
+        response = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?address={location}&key={settings.GOOGLE_MAPS_API_KEY}')
+        if response.status_code == 200:
+            result = response.json()
+            # extract latitude and longitude from response
+            lat = result['results'][0]['geometry']['location']['lat']
+            lng = result['results'][0]['geometry']['location']['lng']
+            # create url for map image
+            map_url = f'https://maps.googleapis.com/maps/api/staticmap?center={lat},{lng}&zoom=12&size=400x400&key={settings.GOOGLE_MAPS_API_KEY}'
+            return Response({'map_url': map_url}, status=200)
+        else:
+            return Response({'error': 'Error fetching location details.'}, status=response.status_code)
 
