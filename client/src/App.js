@@ -12,10 +12,15 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./ErrorPage";
 import Login from "./Pages/Login";
-import SignUp from "./Pages/SignUp";
-// import SignIn from "./Pages/SignIn";
-import CostEstimation from "./CostEstimation";
+
+
 import { useAppContext } from "./context/AppContext"
+
+import CostEstimation from "./CostEstimation";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import Signup from "./Pages/Signup";
+
 
 
 const App = () => {
@@ -56,24 +61,29 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+    <Provider store={store}>
       <BrowserRouter>
         <GlobalStyle />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/priceestimator" element={<About />}></Route>
+
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
+
           <Route path="/projects" element={<Projects />}></Route>
           <Route path="/singleProject/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<Signup/>} ></Route>
           <Route path="/costestimation" element={<CostEstimation />}></Route>
 
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
+      </Provider>
     </ThemeProvider>
 
 

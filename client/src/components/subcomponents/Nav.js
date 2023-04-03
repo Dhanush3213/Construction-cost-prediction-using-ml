@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { BsHandbag } from "react-icons/bs";
-
 import { CgMenu, CgClose } from "react-icons/cg";
-
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState(false);
@@ -161,7 +159,9 @@ const Nav = () => {
           <li><NavLink to="/priceestimator" className="navbar-link " onClick={() => setMenuIcon(false)}>Cost Estimation</NavLink></li>
           <li><NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink></li>
           <li><NavLink to="/login" className="navbar-link " onClick={() => setMenuIcon(false)}>Login</NavLink></li>
-          <li><NavLink to="/signup" className="navbar-link " onClick={() => setMenuIcon(false)}>SignUP</NavLink></li>
+
+          <li><NavLink to="/signup" className="navbar-link " onClick={() => setMenuIcon(false)}>SignUp</NavLink></li>
+
           <li>
             <NavLink to="/wishlist" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
               <BsHandbag className='cart-trolley' />
