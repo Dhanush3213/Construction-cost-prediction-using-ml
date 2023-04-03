@@ -252,7 +252,7 @@ img {
 }  
 
 `
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
@@ -262,22 +262,22 @@ img {
         e.preventDefault();
 
         // we are sending the data to backend(to signin route)server/client/src/components/Login.js
-        const res = await fetch("http://127.0.0.1:8000/token", {
+        const res = await fetch("http://127.0.0.1:8000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                email: email,
+                username: username,
                 password: password,
             }),
         });
 
         // res in pending state we can get that  data in by using res.json();
-        const data = await res.json();
+        const data = await res.text();
         //  console.log(res.status);
 
-        if (res.status === 400 || !data) {
+        if (res.status == 400 || !data) {
             window.alert("Invalid Creadentials");
         } else {
 
@@ -339,13 +339,13 @@ img {
                         </div>
                         <form name="signin" className="form">
                             <div className="input-control">
-                                <label for="email" className="input-label" hidden>Email Address</label>
-                                <input type="email" value={email}
-                                    name="email"
+                                <label for="username" className="input-label" hidden>Username</label>
+                                <input type="text" value={username}
+                                    name="username"
                                     onChange={(e) => {
                                         // console.log(e.target.value);
-                                        setEmail(e.target.value);
-                                    }} id="email" className="input-field" placeholder="Email Address" />
+                                        setUsername(e.target.value);
+                                    }} id="email" className="input-field" placeholder="Enter your username" />
                             </div>
                             <div className="input-control">
                                 <label for="password" className="input-label" hidden>Password</label>
@@ -358,7 +358,7 @@ img {
                             </div>
                             <div className="input-control">
                                 <a href="#" className="text text-links forgot">Forgot Password</a>
-                                <input type="submit" name="submit" onClick={loginUser} className="input-submit" value="Sign In" disabled />
+                                <input type="submit" name="submit" onClick={loginUser} className="input-submit" value="Sign In" />
                             </div>
                         </form>
                         <div className="striped">

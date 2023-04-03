@@ -43,10 +43,12 @@ def signup(request):
 
             context['response'] = 'User created successfully, you can now login with your username and password'
             context['username'] = new_user.username
+            context['status'] = 201
             return Response(context, status=status.HTTP_201_CREATED)
 
         else:
             context['error'] = serializer.errors
+            context['status'] = 422
             return Response(context, status=status.HTTP_400_BAD_REQUEST)
 """ {
    "username" : "my_username",
@@ -90,11 +92,13 @@ def login(request):
                 JWT.objects.create(user_id=user.id, access=access_token)
                 context['message'] = 'Login successful!'
                 context['access_token'] = access_token
-
+                context['status'] = 201
                 return Response(context, status=status.HTTP_200_OK)
             else:
+                context['status'] = 422
                 context['error'] = "Invalid login credentials, please check and try again"
                 return Response(context, status=status.HTTP_400_BAD_REQUEST)
         else:
+            context['status'] = 422
             context['error'] = serializer.errors
             return Response(context, status=status.HTTP_400_BAD_REQUEST)

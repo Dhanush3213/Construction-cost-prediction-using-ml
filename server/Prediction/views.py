@@ -1,7 +1,6 @@
 from django.shortcuts import render
 import numpy as np
 import pandas as pd
-from .models import Home
 from rest_framework.views import APIView
 import pickle
 from rest_framework.views import APIView

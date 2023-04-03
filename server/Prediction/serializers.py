@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import HomePrice
 from django.contrib.auth.models import User
-from .models import Home
+
 
 class HomePriceSerializer(serializers.ModelSerializer):
     class Meta:
