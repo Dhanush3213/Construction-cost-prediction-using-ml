@@ -7,5 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("API.urls"), name="API"),
     path('api/', include("Prediction.urls"), name="Prediction"),
+    path('home/', include("Homesamples.urls"), name="Homesamples"),
     path('', include('django.contrib.auth.urls')),
 ]

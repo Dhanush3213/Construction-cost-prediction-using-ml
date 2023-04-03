@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Prediction',
+    'Homesamples',
+    'Chatbot',
     'API',
     'rest_framework',
      'corsheaders',
