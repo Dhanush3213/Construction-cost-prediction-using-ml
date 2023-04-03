@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./Home"
 import About from "./CostEstimation"
@@ -14,14 +14,19 @@ import ErrorPage from "./ErrorPage";
 import Login from "./Pages/Login";
 
 
+import { useAppContext } from "./context/AppContext"
+
 import CostEstimation from "./CostEstimation";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import Signup from "./Pages/Signup";
 
 
-const App = () => {
 
+const App = () => {
+  const { loginState } = useAppContext();
+
+  console.log("app.js" + loginState);
   const theme = {
     colors: {
       heading: "rgb(24 24 29)",
@@ -48,6 +53,12 @@ const App = () => {
     },
   };
 
+  useEffect(() => {
+    localStorage.setItem("login", JSON.stringify(loginState));
+    let state = JSON.parse(localStorage.getItem("login"));
+    console.log(state);
+  }, [loginState])
+
   return (
     <ThemeProvider theme={theme}>
     <Provider store={store}>
@@ -57,7 +68,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/priceestimator" element={<About />}></Route>
-          <Route path="/contact" element={<Signup/>}></Route>
+
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+
           <Route path="/projects" element={<Projects />}></Route>
           <Route path="/singleProject/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
@@ -71,6 +85,8 @@ const App = () => {
       </BrowserRouter>
       </Provider>
     </ThemeProvider>
+
+
   );
 };
 

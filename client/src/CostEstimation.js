@@ -1,17 +1,22 @@
 
 import React, { useState } from 'react';
 
+
+
 const CostEstimation = () => {        
     const [location, setLocation] = useState("");
     const [sqft, setSqft] = useState(0);
     const [bath, setBath] = useState(0);
     const [bhk, setBhk] = useState(0);
+
     const [prediction, setPrediction] = useState(0);
-    
+
     const handleSubmit = async e => {
         e.preventDefault();
+
         
         const response = await fetch('http://127.0.0.1:8000/api/predict/', {
+
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -23,15 +28,15 @@ const CostEstimation = () => {
             })
         });
         const data = await response.json();
-        
+
         setPrediction(data.prediction);
     };
-    
-   
+
+
     return (
-        <div>
+        <>
             <form onSubmit={handleSubmit}>
-            <div>
+                <div>
                     <label>Location :</label>
                     <input type="text" value={location} onChange={e => setLocation(e.target.value)} />
                 </div>
@@ -45,21 +50,29 @@ const CostEstimation = () => {
                 </div>
 <div>
                     <label>Number of Bathrooms:</label>
+
+                
+
+
                     <input type="number" value={bath} onChange={e => setBath(e.target.value)} />
                 </div>
              
                 
+
                 <button type="submit">Predict</button>
             </form>
             <div>
                 <p>Predicted Price: ${prediction}</p>
             </div>
-        </div>
-    );
-};
+        </>
+    )
+}
 
-    
-    
+
+
+
+
+
 
 
 export default CostEstimation
