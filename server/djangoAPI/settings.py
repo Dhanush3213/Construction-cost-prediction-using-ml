@@ -58,17 +58,22 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "http://127.0.0.1:3000",
 ]
+CORS_ORIGIN_ALLOW_ALL = True
+
 CORS_ALLOW_HEADERS = [
     "accept",
     "accept-encoding",
     "authorization",
     "content-type",
+    "Content-type",
     "dnt",
     "origin",
     "user-agent",
     "x-csrftoken",
     "x-requested-with",
+    "application/json"
 ]
 
 ROOT_URLCONF = 'djangoAPI.urls'
@@ -100,6 +105,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ( 'rest_framework.authentication.TokenAuthentication',),
+'DEFAULT_PERMISSION_CLASSES': [
+   'rest_framework.permissions.AllowAny',
+]
 }
 
 

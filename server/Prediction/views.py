@@ -31,8 +31,8 @@ class HousePricePredictionView(APIView):
         # Get the input data from the request
         data = request.data
         def predict_price(location, sqft, bath, bhk):
-            x = pd.read_csv("D://final year project/construction cost estimation using ml/constructionproj/server/APIProject/Prediction/classifier/train.csv")
-            loc_index = np.where(x.columns == location)[0][0]
+            x = pd.read_csv("D://final year project/construction cost estimation using ml/constructionproj/server/Prediction/classifier/train.csv")
+            loc_index = np.where(x.columns == location)[0]
             inputs = np.zeros(len(x.columns))
     
             inputs[0] = sqft
@@ -69,8 +69,6 @@ def home_price_detail(request, pk):
 
     serializer = HomePriceSerializer(home_price)
     return Response(serializer.data)
-
-
 
 
 class LocationMapView(APIView):

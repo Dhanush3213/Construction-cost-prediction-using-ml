@@ -2,13 +2,13 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 // import "./Login.css"
-import styled from "styled-components";
+//import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext"
 
 const Login = () => {
     const { state, dispatch } = useAppContext();
-
+/* 
     const Wrapper = styled.section`
 :root {
          --color-white: #ffffff;
@@ -138,7 +138,7 @@ img {
 .form {
     width: 100%;
     height: auto;
-    /* margin-top: 2rem; */
+    // margin-top: 2rem; 
      
     .input-control {
       display: flex;
@@ -225,7 +225,7 @@ img {
         display: flex;
         justify-content: center;
         align-items: center;
-        /* width: 100%; */
+        // width: 100%; 
         height: auto;
         padding: 0.35rem 1.25rem;
         outline: none;
@@ -251,7 +251,7 @@ img {
     }
 }  
 
-`
+` */
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -274,10 +274,10 @@ img {
         });
 
         // res in pending state we can get that  data in by using res.json();
-        const data = await res.text();
+        const data = await res.json();
         //  console.log(res.status);
 
-        if (res.status == 400 || !data) {
+        if (res.status === 400 || !data) {
             window.alert("Invalid Creadentials");
         } else {
 
@@ -333,7 +333,7 @@ img {
                         <div className="heading">
                             <h1 className="text text-large">Sign In</h1>
                             {/* <NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink> */}
-                            <NavLink to="/signup">  <p className="text text-normal">New user? <span><a href="#" className="text text-links">Create an account</a></span>
+                            <NavLink to="/signup">  <p className="text text-normal">New user? <span><a href="/#" className="text text-links">Create an account</a></span>
                             </p> </NavLink>
 
                         </div>
@@ -357,7 +357,7 @@ img {
                                     }} id="password" className="input-field" placeholder="Password" />
                             </div>
                             <div className="input-control">
-                                <a href="#" className="text text-links forgot">Forgot Password</a>
+                                <a href="/#" className="text text-links forgot">Forgot Password</a>
                                 <input type="submit" name="submit" onClick={loginUser} className="input-submit" value="Sign In" />
                             </div>
                         </form>
@@ -368,19 +368,19 @@ img {
                         </div>
                         <div className="method">
                             <div className="method-control">
-                                <a href="#" className="method-action">
+                                <a href="/#" className="method-action">
                                     <i className="ion ion-logo-google"></i>
                                     <span>Sign in with Google</span>
                                 </a>
                             </div>
                             <div className="method-control">
-                                <a href="#" className="method-action">
+                                <a href="/#" className="method-action">
                                     <i className="ion ion-logo-facebook"></i>
                                     <span>Sign in with Facebook</span>
                                 </a>
                             </div>
                             <div className="method-control">
-                                <a href="#" className="method-action">
+                                <a href="/#" className="method-action">
                                     <i className="ion ion-logo-apple"></i>
                                     <span>Sign in with Apple</span>
                                 </a>

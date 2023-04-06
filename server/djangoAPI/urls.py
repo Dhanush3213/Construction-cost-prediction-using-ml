@@ -8,5 +8,6 @@ urlpatterns = [
     path('', include("API.urls"), name="API"),
     path('api/', include("Prediction.urls"), name="Prediction"),
     path('home/', include("Homesamples.urls"), name="Homesamples"),
+    path('chat/', include("Chatbot.urls"), name="Chatbot"),
     path('', include('django.contrib.auth.urls')),
 ]

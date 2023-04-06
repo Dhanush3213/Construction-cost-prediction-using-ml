@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // import "./Login.css"
-import styled from "styled-components";
+//import styled from "styled-components";
 import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const Wrapper = styled.section`
+   /*  const Wrapper = styled.section`
 :root {
          --color-white: #ffffff;
          --color-light: #f1f5f9;
@@ -141,7 +141,7 @@ img {
 .form {
     width: 100%;
     height: auto;
-    /* margin-top: 2rem; */
+    // margin-top: 2rem; 
      
     .input-control {
       display: flex;
@@ -233,7 +233,7 @@ img {
         display: flex;
         justify-content: center;
         align-items: center;
-        /* width: 100%; */
+        // width: 100%; 
         height: auto;
         padding: 0.35rem 1.25rem;
         outline: none;
@@ -258,8 +258,8 @@ img {
         padding: 2rem 2.5rem;
     }
 }  
-
-`
+ 
+`*/
     const [user, setuser] = useState({
         username: "",
         first_name: "",
@@ -287,6 +287,7 @@ img {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
             },
             // {"name":"test","email":"test1@gmail.com","phone":"123","work":"wev","password":"123","cpassword":"123"}
             body: JSON.stringify({
@@ -300,9 +301,9 @@ img {
         });
 
 
-        const data = await res.text();
+        const data = await res.json();
 
-        if (data.status == 422 || !data) {
+        if (data.status === 422 || !data) {
             window.alert("invalid registration");
             //  console.log("invalid registration");
         } else {
@@ -320,7 +321,7 @@ img {
                         <section className="wrapper">
                             <div className="heading">
                                 <h1 className="text text-large">Create User</h1>
-                                <NavLink to="/login"> <p className="text text-normal">Exiting user? <span><a href="#" className="text text-links">SignIn</a></span>
+                                <NavLink to="/login"> <p className="text text-normal">Exiting user? <span><a href="/#" className="text text-links">SignIn</a></span>
                                 </p> </NavLink>
                             </div>
                             <form name="signin" className="form">
@@ -366,19 +367,19 @@ img {
                             </div>
                             <div className="method">
                                 <div className="method-control">
-                                    <a href="#" className="method-action">
+                                    <a href="/#" className="method-action">
                                         <i className="ion ion-logo-google"></i>
                                         <span>Sign Up with Google</span>
                                     </a>
                                 </div>
                                 <div className="method-control">
-                                    <a href="#" className="method-action">
+                                    <a href="/#" className="method-action">
                                         <i className="ion ion-logo-facebook"></i>
                                         <span>Sign Up with Facebook</span>
                                     </a>
                                 </div>
                                 <div className="method-control">
-                                    <a href="#" className="method-action">
+                                    <a href="/#" className="method-action">
                                         <i className="ion ion-logo-apple"></i>
                                         <span>Sign Up with Apple</span>
                                     </a>

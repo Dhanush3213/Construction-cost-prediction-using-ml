@@ -20,7 +20,7 @@ import CostEstimation from "./CostEstimation";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import SignUp from "./Pages/SignUp";
-
+import Chatbot from "./Chatbot";
 
 
 const App = () => {
@@ -76,9 +76,9 @@ const App = () => {
           <Route path="/singleProject/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<SignUp/>} ></Route>
+          <Route path="/signup" element={<SignUp />} ></Route>
           <Route path="/costestimation" element={<CostEstimation />}></Route>
-
+          <Route path="/chatbot" element={<Chatbot />}></Route>
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
         <Footer />
