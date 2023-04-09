@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-
     const navigate = useNavigate();
 
    /*  const Wrapper = styled.section`
@@ -261,12 +260,12 @@ img {
  
 `*/
     const [user, setuser] = useState({
-        username: "",
-        first_name: "",
-        last_name: "",
+        name: "",
+        email:"",
         password: "",
-        password_2: "",
-        email:""
+        password2: "",
+        tc:""
+
     });
 
     let name, value;
@@ -280,32 +279,36 @@ img {
     //! we are sending data to Register route....
     const POSTDATA = async (e) => {
         e.preventDefault();
-        const { username, first_name, last_name, password, password_2,email } = user;
+        const { name, email ,password, password2,tc} = user;
 
 
-        const res = await fetch("http://127.0.0.1:8000/signup", {
+        const res = await fetch("http://127.0.0.1:8000/api/user/register/", {
             method: "POST",
+     
+
+           
             headers: {
+
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "*",
+
             },
             // {"name":"test","email":"test1@gmail.com","phone":"123","work":"wev","password":"123","cpassword":"123"}
             body: JSON.stringify({
-                username: username,
-                first_name: first_name,
-                last_name: last_name,
+                name: name,
+                email:email,
                 password: password,
-                password_2: password_2,
-                email:email
+                password2: password2,
+                tc:tc
+          
             }),
         });
 
-
         const data = await res.json();
-
+        console.log("Resonse ",data)
         if (data.status === 422 || !data) {
             window.alert("invalid registration");
-            //  console.log("invalid registration");
+            console.log("invalid registration");
         } else {
             window.alert(" registration successfull u can login");
             navigate("/Login");
@@ -327,19 +330,10 @@ img {
                             <form name="signin" className="form">
                                 <div >
                                     <label htmlFor="name" className="input-label" hidden>UserName :</label>
-                                    <input type="text" name="username" id="name" value={user.username}
-                                        onChange={inputHandlers} className="input-field"placeholder="User Name"  />
+                                    <input type="text" name="name" id="name" value={user.name}
+                                        onChange={inputHandlers} className="input-field"placeholder="Name"  />
                                 </div>
-                                <div className="input-control">
-                                    <label htmlFor="name" className="input-label" hidden>FirstName :</label>
-                                    <input type="text" name="first_name" id="name" value={user.first_name}
-                                        onChange={inputHandlers} className="input-field" placeholder="First Name" />
-                                </div>
-                                <div className="input-control">
-                                    <label htmlFor="name" className="input-label" hidden>LastName :</label>
-                                    <input type="text" name="last_name" id="name" value={user.last_name}
-                                        onChange={inputHandlers} className="input-field" placeholder="Last Name" />
-                                </div>
+
                                 <div className="input-control">
                                     <label htmlFor="email" className="input-label" hidden>Email Address :</label>
                                     <input type="email" name="email" id="email" value={user.email}
@@ -352,10 +346,14 @@ img {
                                 </div>
                                 <div className="input-control">
                                     <label htmlFor="password" className="input-label" hidden>Password</label>
-                                    <input type="password" name="password_2" value={user.password_2}
-                                        onChange={inputHandlers} id="password" className="input-field" placeholder="Confirm Password" />
+                                    <input type="password" name="password2" value={user.password2}
+                                        onChange={inputHandlers} id="password2" className="input-field" placeholder="Confirm Password" />
                                 </div>
-
+                                <div className="input-control">
+                                    <label htmlFor="checkbox" className="input-label" hidden>agree terms and condition</label>
+                                    <input type="checkbox" name="tc" value={user.tc}
+                                        onChange={inputHandlers} id="tc" className="input-field" placeholder="agree terms and condition" />
+                                </div>
                                 <div className="input-control input-control-button ">
                                     <input type="submit" name="submit" className="input-submit" onClick={POSTDATA} value="Sign Up"  />
                                 </div>

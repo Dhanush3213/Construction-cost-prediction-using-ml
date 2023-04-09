@@ -252,7 +252,7 @@ img {
 }  
 
 ` */
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
@@ -262,13 +262,13 @@ img {
         e.preventDefault();
 
         // we are sending the data to backend(to signin route)server/client/src/components/Login.js
-        const res = await fetch("http://127.0.0.1:8000/login", {
+        const res = await fetch("http://127.0.0.1:8000/api/user/login/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                username: username,
+                email: email,
                 password: password,
             }),
         });
@@ -339,13 +339,13 @@ img {
                         </div>
                         <form name="signin" className="form">
                             <div className="input-control">
-                                <label for="username" className="input-label" hidden>Username</label>
-                                <input type="text" value={username}
-                                    name="username"
+                                <label for="email" className="input-label" hidden>Email</label>
+                                <input type="email" value={email}
+                                    name="email"
                                     onChange={(e) => {
                                         // console.log(e.target.value);
-                                        setUsername(e.target.value);
-                                    }} id="email" className="input-field" placeholder="Enter your username" />
+                                        setEmail(e.target.value);
+                                    }} id="email" className="input-field" placeholder="Enter your Email" />
                             </div>
                             <div className="input-control">
                                 <label for="password" className="input-label" hidden>Password</label>
