@@ -252,7 +252,9 @@ img {
 `
 
 const Login = () => {
-    const { state, dispatch } = useAppContext();
+    const { dispatch } = useAppContext();
+
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
