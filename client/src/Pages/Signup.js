@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const SignUp = () => {
     const navigate = useNavigate();
 
-   /*  const Wrapper = styled.section`
+     const Wrapper = styled.section`
 :root {
          --color-white: #ffffff;
          --color-light: #f1f5f9;
@@ -258,14 +258,13 @@ img {
     }
 }  
  
-`*/
+`
     const [user, setuser] = useState({
         name: "",
         email:"",
         password: "",
         password2: "",
         tc:""
-
     });
 
     let name, value;
@@ -279,7 +278,7 @@ img {
     //! we are sending data to Register route....
     const POSTDATA = async (e) => {
         e.preventDefault();
-        const { name, email ,password, password2,tc} = user;
+        const { name,password, password_2,email } = user;
 
 
         const res = await fetch("http://127.0.0.1:8000/api/user/register/", {
@@ -290,23 +289,22 @@ img {
             headers: {
 
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
 
             },
-            // {"name":"test","email":"test1@gmail.com","phone":"123","work":"wev","password":"123","cpassword":"123"}
+
             body: JSON.stringify({
                 name: name,
                 email:email,
                 password: password,
                 password2: password2,
                 tc:tc
-          
             }),
         });
 
+
         const data = await res.json();
-        console.log("Resonse ",data)
-        if (data.status === 422 || !data) {
+
+        if (data.status == 422 || !data) {
             window.alert("invalid registration");
             console.log("invalid registration");
         } else {
@@ -329,8 +327,8 @@ img {
                             </div>
                             <form name="signin" className="form">
                                 <div >
-                                    <label htmlFor="name" className="input-label" hidden>UserName :</label>
-                                    <input type="text" name="name" id="name" value={user.name}
+                                    <label htmlFor="name" className="input-label" hidden>Name :</label>
+                                    <input type="text" name="username" id="name" value={user.name}
                                         onChange={inputHandlers} className="input-field"placeholder="Name"  />
                                 </div>
 
@@ -355,7 +353,7 @@ img {
                                         onChange={inputHandlers} id="tc" className="input-field" placeholder="agree terms and condition" />
                                 </div>
                                 <div className="input-control input-control-button ">
-                                    <input type="submit" name="submit" className="input-submit" onClick={POSTDATA} value="Sign Up"  />
+                                    <input type="submit" name="submit" className="input-submit" onClick={POSTDATA} value="Sign Up" />
                                 </div>
                             </form>
                             <div className="striped">
