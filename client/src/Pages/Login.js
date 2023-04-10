@@ -8,7 +8,7 @@ import { useAppContext } from "../context/AppContext"
 
 const Login = () => {
     const { state, dispatch } = useAppContext();
-/* 
+
     const Wrapper = styled.section`
 :root {
          --color-white: #ffffff;
@@ -251,7 +251,7 @@ img {
     }
 }  
 
-` */
+` 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -274,15 +274,15 @@ img {
         });
 
         // res in pending state we can get that  data in by using res.json();
+
         const data = await res.json();
         //  console.log(res.status);
 
         if (res.status === 400 || !data) {
+            console.log(data);
             window.alert("Invalid Creadentials");
         } else {
-
             dispatch({ type: "USER", payload: true });
-
             // type is name for the action that is going perfrom in reducer
             // its like msg we are sending
             window.alert(" Login Successful ");
