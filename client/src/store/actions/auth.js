@@ -17,7 +17,7 @@ export const login = (email, password) => async (dispatch) => {
     const body = JSON.stringify({ email, password });
     try {
         const res = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/token/`,
+            `${process.env.REACT_APP_API_URL}/api/user/login/`,
             body,
             config
         );
@@ -36,16 +36,16 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const signup =
-    (name, email, password, password2) => async (dispatch) => {
+    (name, email, password, password2,tc) => async (dispatch) => {
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        const body = JSON.stringify({ name, email, password, password2 });
+        const body = JSON.stringify({ name, email, password, password2,tc});
         try {
             const res = await axios.post(
-                `${process.env.REACT_APP_API_URL}/api/signup`,
+                `${process.env.REACT_APP_API_URL}/api/user/register/`,
                 body,
                 config
             );

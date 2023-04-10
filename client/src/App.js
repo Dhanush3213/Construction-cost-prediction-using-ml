@@ -11,9 +11,9 @@ import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./ErrorPage";
-import Login from "./Pages/Login";
+import Login from "./components/auth/Login";
 
-
+import Register from "./components/auth/Register";
 import { useAppContext } from "./context/AppContext"
 
 import CostEstimation from "./CostEstimation";
@@ -21,11 +21,22 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import SignUp from "./Pages/SignUp";
 import Chatbot from "./Chatbot";
-
+import PrivateRoute from "./components/utils/PrivateRoute";
+import UserContext from "./components/utils/UserContext";
 
 const App = () => {
   const { loginState } = useAppContext();
+  const getToken=()=>{
+    const token=localStorage.getItem("token")
+    if(token){
+      return true;
+    }
+    else{
+      return false;
+    }
 
+  }
+const[isAuth,setisAuth]=useState(getToken());
   console.log("app.js" + loginState);
   const theme = {
     colors: {
@@ -66,7 +77,15 @@ const App = () => {
         <GlobalStyle />
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Switch>
+            <UserContext.Provider value={{isAuth, setisAuth}}>
+            <PrivateRoute exact path="/" authed={isAuth} component={Home}/>
+             <Route path="/login" component={Login}/>
+             <Route path="/register" component={Register}/>
+            </UserContext.Provider>
+
+          </Switch>
+{/*           <Route path="/" element={<Home />} />
           <Route path="/priceestimator" element={<About />}></Route>
 
           <Route path="/contact" element={<Contact />}></Route>
@@ -78,7 +97,7 @@ const App = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />} ></Route>
           <Route path="/costestimation" element={<CostEstimation />}></Route>
-          <Route path="/chatbot" element={<Chatbot />}></Route>
+          <Route path="/chatbot" element={<Chatbot />}></Route> */}
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
         <Footer />
