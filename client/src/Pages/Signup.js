@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const Signup = () => {
     const navigate = useNavigate();
 
      const Wrapper = styled.section`
@@ -391,4 +391,4 @@ img {
     )
 }
 
-export default SignUp
+export default Signup

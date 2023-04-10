@@ -19,10 +19,9 @@ import { useAppContext } from "./context/AppContext"
 import CostEstimation from "./CostEstimation";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import SignUp from "./Pages/SignUp";
+import SignUp from "./Pages/Signup";
 import Chatbot from "./Chatbot";
-import PrivateRoute from "./components/utils/PrivateRoute";
-import UserContext from "./components/utils/UserContext";
+
 
 const App = () => {
   const { loginState } = useAppContext();
@@ -77,15 +76,8 @@ const[isAuth,setisAuth]=useState(getToken());
         <GlobalStyle />
         <Header />
         <Routes>
-          <Switch>
-            <UserContext.Provider value={{isAuth, setisAuth}}>
-            <PrivateRoute exact path="/" authed={isAuth} component={Home}/>
-             <Route path="/login" component={Login}/>
-             <Route path="/register" component={Register}/>
-            </UserContext.Provider>
 
-          </Switch>
-{/*           <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/priceestimator" element={<About />}></Route>
 
           <Route path="/contact" element={<Contact />}></Route>
@@ -95,9 +87,9 @@ const[isAuth,setisAuth]=useState(getToken());
           <Route path="/singleProject/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<SignUp />} ></Route>
+          <Route path="/signup" element={<Signup />} ></Route>
           <Route path="/costestimation" element={<CostEstimation />}></Route>
-          <Route path="/chatbot" element={<Chatbot />}></Route> */}
+          <Route path="/chatbot" element={<Chatbot />}></Route> 
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
         <Footer />

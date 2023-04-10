@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'Prediction',
     'Homesamples',
     'Chatbot',
-    'API',
     'rest_framework',
+    'account',
      'corsheaders',
 ]
 
