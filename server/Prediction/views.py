@@ -25,13 +25,13 @@ class HousePricePredictionView(APIView):
 
     def post(self, request):
         # Load the trained model from a pickle file
-        with open('D://final year project/construction cost estimation using ml/constructionproj/server/Prediction/classifier/banglore_home_prices_model.pickle', 'rb') as f:
+        with open('D://E-Commerce-Application Using ReactJS/Construction-cost-prediction-using-ml/server/Prediction/classifier/banglore_home_prices_model.pickle', 'rb') as f:
             model = pickle.load(f)
         
         # Get the input data from the request
         data = request.data
         def predict_price(location, sqft, bath, bhk):
-            x = pd.read_csv("D://final year project/construction cost estimation using ml/constructionproj/server/APIProject/Prediction/classifier/train.csv")
+            x = pd.read_csv("D://E-Commerce-Application Using ReactJS\Construction-cost-prediction-using-ml/server/Prediction/classifier/train.csv")
             loc_index = np.where(x.columns == location)[0][0]
             inputs = np.zeros(len(x.columns))
     

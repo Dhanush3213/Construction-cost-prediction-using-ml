@@ -266,7 +266,7 @@ img {
         last_name: "",
         password: "",
         password_2: "",
-        email:""
+        email: ""
     });
 
     let name, value;
@@ -280,7 +280,7 @@ img {
     //! we are sending data to Register route....
     const POSTDATA = async (e) => {
         e.preventDefault();
-        const { username, first_name, last_name, password, password_2,email } = user;
+        const { username, first_name, last_name, password, password_2, email } = user;
 
 
         const res = await fetch("http://127.0.0.1:8000/signup", {
@@ -288,17 +288,18 @@ img {
             headers: {
                 "Content-Type": "application/json",
             },
-            // {"name":"test","email":"test1@gmail.com","phone":"123","work":"wev","password":"123","cpassword":"123"}
+
             body: JSON.stringify({
                 username: username,
                 first_name: first_name,
                 last_name: last_name,
                 password: password,
                 password_2: password_2,
-                email:email
+                email: email
             }),
         });
 
+        console.log(" responsoe from backed " + res);
 
         const data = await res.text();
 
@@ -327,7 +328,7 @@ img {
                                 <div >
                                     <label htmlFor="name" className="input-label" hidden>UserName :</label>
                                     <input type="text" name="username" id="name" value={user.username}
-                                        onChange={inputHandlers} className="input-field"placeholder="User Name"  />
+                                        onChange={inputHandlers} className="input-field" placeholder="User Name" />
                                 </div>
                                 <div className="input-control">
                                     <label htmlFor="name" className="input-label" hidden>FirstName :</label>
@@ -356,7 +357,7 @@ img {
                                 </div>
 
                                 <div className="input-control input-control-button ">
-                                    <input type="submit" name="submit" className="input-submit" onClick={POSTDATA} value="Sign Up"  />
+                                    <input type="submit" name="submit" className="input-submit" onClick={POSTDATA} value="Sign Up" />
                                 </div>
                             </form>
                             <div className="striped">
