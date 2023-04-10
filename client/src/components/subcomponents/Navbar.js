@@ -150,6 +150,9 @@ const Navbar = () => {
     }
   `;
 
+
+
+
   return (
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>

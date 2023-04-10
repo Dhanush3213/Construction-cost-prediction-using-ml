@@ -1,15 +1,11 @@
-// const Reducer = (state, action) => {
-//     switch (action.type) {
-
-//         default: return state;
-//     }
-// }
-
 
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case "USER": return state = action.payload;
+        case "USER": {
+            let login = action.payload;
+            return { ...state, loginState: login }
+        }
 
         default: return state;
     }

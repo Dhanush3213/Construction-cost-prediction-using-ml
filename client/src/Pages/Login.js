@@ -6,10 +6,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext"
 
-const Login = () => {
-    const { state, dispatch } = useAppContext();
 
-    const Wrapper = styled.section`
+const Wrapper = styled.section`
 :root {
          --color-white: #ffffff;
          --color-light: #f1f5f9;
@@ -252,7 +250,11 @@ img {
 }  
 
 `
-    const [username, setUsername] = useState("");
+
+const Login = () => {
+    const { state, dispatch } = useAppContext();
+
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
@@ -262,13 +264,13 @@ img {
         e.preventDefault();
 
         // we are sending the data to backend(to signin route)server/client/src/components/Login.js
-        const res = await fetch("http://127.0.0.1:8000/login", {
+        const res = await fetch("http://127.0.0.1:8000/api/user/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                username: username,
+                email: email,
                 password: password,
             }),
         });
@@ -280,7 +282,7 @@ img {
         //  console.log(res.status);
 
         if (res.status == 400 || !data) {
-            console.log(data);
+            // console.log(data);
             window.alert("Invalid Creadentials");
         } else {
             dispatch({ type: "USER", payload: true });
@@ -326,8 +328,8 @@ img {
         //         </div>
         //     </div>
         // </div>
-        // <Wrapper>
-        <body>
+        <Wrapper>
+            {/* <body> */}
             <main className="main">
                 <div className="container-login">
                     <section className="wrapper">
@@ -340,16 +342,16 @@ img {
                         </div>
                         <form name="signin" className="form">
                             <div className="input-control">
-                                <label for="username" className="input-label" hidden>Username</label>
-                                <input type="text" value={username}
-                                    name="username"
+                                <label htmlFor="Email" className="input-label" hidden>Username</label>
+                                <input type="Email" value={email}
+                                    name="email"
                                     onChange={(e) => {
                                         // console.log(e.target.value);
-                                        setUsername(e.target.value);
+                                        setEmail(e.target.value);
                                     }} id="email" className="input-field" placeholder="Enter your username" />
                             </div>
                             <div className="input-control">
-                                <label for="password" className="input-label" hidden>Password</label>
+                                <label htmlFor="password" className="input-label" hidden>Password</label>
                                 <input type="password" name="password"
                                     value={password}
                                     onChange={(e) => {
@@ -388,10 +390,10 @@ img {
                             </div>
                         </div>
                     </section>
-                </div>
-            </main>
-        </body>
-        // </Wrapper>
+                </div >
+            </main >
+            {/* </body> */}
+        </Wrapper >
 
     )
 }

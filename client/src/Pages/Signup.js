@@ -4,11 +4,7 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
-
-    const navigate = useNavigate();
-
-    const Wrapper = styled.section`
+const Wrapper = styled.section`
 :root {
          --color-white: #ffffff;
          --color-light: #f1f5f9;
@@ -260,6 +256,12 @@ img {
 }  
 
 `
+
+const SignUp = () => {
+
+    const navigate = useNavigate();
+
+
     const [user, setuser] = useState({
         username: "",
         first_name: "",
@@ -282,7 +284,6 @@ img {
         e.preventDefault();
         const { username, first_name, last_name, password, password_2, email } = user;
 
-
         const res = await fetch("http://127.0.0.1:8000/signup", {
             method: "POST",
             headers: {
@@ -303,7 +304,7 @@ img {
 
         const data = await res.text();
 
-        if (data.status == 422 || !data) {
+        if (data.status === 422 || !data) {
             window.alert("invalid registration");
             //  console.log("invalid registration");
         } else {
@@ -313,85 +314,84 @@ img {
     };
 
     return (
-        // <Wrapper>
-        <main>
-            <body>
-                <main className="main">
-                    <div className="container-login">
-                        <section className="wrapper">
-                            <div className="heading">
-                                <h1 className="text text-large">Create User</h1>
-                                <NavLink to="/login"> <p className="text text-normal">Exiting user? <span><a href="#" className="text text-links">SignIn</a></span>
-                                </p> </NavLink>
+        <Wrapper>
+            {/* <main> */}
+            {/* <body> */}
+            <main className="main">
+                <div className="container-login">
+                    <section className="wrapper">
+                        <div className="heading">
+                            <h1 className="text text-large">Create User</h1>
+                            <NavLink to="/login"> <p className="text text-normal">Exiting user? <span><a href="#" className="text text-links">SignIn</a></span>
+                            </p> </NavLink>
+                        </div>
+                        <form name="signin" className="form">
+                            <div className='input-control'>
+                                <label htmlFor="name" className="input-label" hidden>UserName :</label>
+                                <input type="text" name="username" id="username" value={user.username}
+                                    onChange={inputHandlers} className="input-field" placeholder="User Name" />
                             </div>
-                            <form name="signin" className="form">
-                                <div >
-                                    <label htmlFor="name" className="input-label" hidden>UserName :</label>
-                                    <input type="text" name="username" id="name" value={user.username}
-                                        onChange={inputHandlers} className="input-field" placeholder="User Name" />
-                                </div>
-                                <div className="input-control">
-                                    <label htmlFor="name" className="input-label" hidden>FirstName :</label>
-                                    <input type="text" name="first_name" id="name" value={user.first_name}
-                                        onChange={inputHandlers} className="input-field" placeholder="First Name" />
-                                </div>
-                                <div className="input-control">
-                                    <label htmlFor="name" className="input-label" hidden>LastName :</label>
-                                    <input type="text" name="last_name" id="name" value={user.last_name}
-                                        onChange={inputHandlers} className="input-field" placeholder="Last Name" />
-                                </div>
-                                <div className="input-control">
-                                    <label htmlFor="email" className="input-label" hidden>Email Address :</label>
-                                    <input type="email" name="email" id="email" value={user.email}
-                                        onChange={inputHandlers} className="input-field" placeholder="Email Address" />
-                                </div>
-                                <div className="input-control">
-                                    <label htmlFor="number" className="input-label" hidden>Password</label>
-                                    <input type="password" name="password" value={user.password}
-                                        onChange={inputHandlers} id="phone" className="input-field" placeholder="Password" />
-                                </div>
-                                <div className="input-control">
-                                    <label htmlFor="password" className="input-label" hidden>Password</label>
-                                    <input type="password" name="password_2" value={user.password_2}
-                                        onChange={inputHandlers} id="password" className="input-field" placeholder="Confirm Password" />
-                                </div>
+                            <div className="input-control">
+                                <label htmlFor="name" className="input-label" hidden>FirstName :</label>
+                                <input type="text" name="first_name" id="first-name" value={user.first_name}
+                                    onChange={inputHandlers} className="input-field" placeholder="First Name" />
+                            </div>
+                            <div className="input-control">
+                                <label htmlFor="name" className="input-label" hidden>LastName :</label>
+                                <input type="text" name="last_name" id="last-name" value={user.last_name}
+                                    onChange={inputHandlers} className="input-field" placeholder="Last Name" />
+                            </div>
+                            <div className="input-control">
+                                <label htmlFor="email" className="input-label" hidden>Email Address :</label>
+                                <input type="email" name="email" id="email" value={user.email}
+                                    onChange={inputHandlers} className="input-field" placeholder="Email Address" />
+                            </div>
+                            <div className="input-control">
+                                <label htmlFor="number" className="input-label" hidden>Password</label>
+                                <input type="password" name="password" value={user.password}
+                                    onChange={inputHandlers} id="phone" className="input-field" placeholder="Password" />
+                            </div>
+                            <div className="input-control">
+                                <label htmlFor="password" className="input-label" hidden>Password</label>
+                                <input type="password" name="password_2" value={user.password_2}
+                                    onChange={inputHandlers} id="password" className="input-field" placeholder="Confirm Password" />
+                            </div>
 
-                                <div className="input-control input-control-button ">
-                                    <input type="submit" name="submit" className="input-submit" onClick={POSTDATA} value="Sign Up" />
-                                </div>
-                            </form>
-                            <div className="striped">
-                                <span className="striped-line"></span>
-                                <span className="striped-text">Or</span>
-                                <span className="striped-line"></span>
+                            <div className="input-control input-control-button ">
+                                <input type="submit" name="submit" className="input-submit" onClick={POSTDATA} value="Sign Up" />
                             </div>
-                            <div className="method">
-                                <div className="method-control">
-                                    <a href="#" className="method-action">
-                                        <i className="ion ion-logo-google"></i>
-                                        <span>Sign Up with Google</span>
-                                    </a>
-                                </div>
-                                <div className="method-control">
-                                    <a href="#" className="method-action">
-                                        <i className="ion ion-logo-facebook"></i>
-                                        <span>Sign Up with Facebook</span>
-                                    </a>
-                                </div>
-                                <div className="method-control">
-                                    <a href="#" className="method-action">
-                                        <i className="ion ion-logo-apple"></i>
-                                        <span>Sign Up with Apple</span>
-                                    </a>
-                                </div>
+                        </form>
+                        <div className="striped">
+                            <span className="striped-line"></span>
+                            <span className="striped-text">Or</span>
+                            <span className="striped-line"></span>
+                        </div>
+                        <div className="method">
+                            <div className="method-control">
+                                <a href="#" className="method-action">
+                                    <i className="ion ion-logo-google"></i>
+                                    <span>Sign Up with Google</span>
+                                </a>
                             </div>
-                        </section>
-                    </div>
-                </main>
-            </body>
-        </main>
-        // </Wrapper>
-
+                            <div className="method-control">
+                                <a href="#" className="method-action">
+                                    <i className="ion ion-logo-facebook"></i>
+                                    <span>Sign Up with Facebook</span>
+                                </a>
+                            </div>
+                            <div className="method-control">
+                                <a href="#" className="method-action">
+                                    <i className="ion ion-logo-apple"></i>
+                                    <span>Sign Up with Apple</span>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            {/* </body> */}
+            {/* </main> */}
+        </Wrapper>
     )
 }
 

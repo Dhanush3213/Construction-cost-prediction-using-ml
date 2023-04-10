@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { BsHandbag } from "react-icons/bs";
 import { CgMenu, CgClose } from "react-icons/cg";
+import { useAppContext } from "../../context/AppContext";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState(false);
+
+  // console.log(state);
+
+
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;
@@ -150,11 +155,59 @@ const Nav = () => {
     }
   `;
 
+  const NavbarToggle = () => {
+
+    const state = useAppContext();
+
+
+    if (state.loginState) {
+      return (
+        <>
+          <li><NavLink to="/" className="navbar-link " onClick={() => setMenuIcon(false)}>Home</NavLink></li>
+          <li><NavLink to="/projects" className="navbar-link " onClick={() => setMenuIcon(false)}>Projects</NavLink></li>
+          <li><NavLink to="/priceestimator" className="navbar-link " onClick={() => setMenuIcon(false)}>Cost Estimation</NavLink></li>
+          <li><NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink></li>
+          <li><NavLink to="/logout" className="navbar-link " onClick={() => setMenuIcon(false)}>Logout</NavLink></li>
+
+          <li>
+            <NavLink to="/wishlist" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
+              <BsHandbag className='cart-trolley' />
+              <span className='cart-total--item'>10</span>
+            </NavLink>
+          </li>
+
+        </>
+      )
+    } else {
+      return (
+        <>
+          <li><NavLink to="/" className="navbar-link " onClick={() => setMenuIcon(false)}>Home</NavLink></li>
+          <li><NavLink to="/projects" className="navbar-link " onClick={() => setMenuIcon(false)}>Projects</NavLink></li>
+          <li><NavLink to="/priceestimator" className="navbar-link " onClick={() => setMenuIcon(false)}>Cost Estimation</NavLink></li>
+          <li><NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink></li>
+          <li><NavLink to="/login" className="navbar-link " onClick={() => setMenuIcon(false)}>Login</NavLink></li>
+
+          <li><NavLink to="/signup" className="navbar-link " onClick={() => setMenuIcon(false)}>SignUp</NavLink></li>
+          {/* 
+          <li>
+            <NavLink to="/wishlist" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
+              <BsHandbag className='cart-trolley' />
+              <span className='cart-total--item'>10</span>
+            </NavLink>
+          </li> */}
+
+        </>
+      );
+    }
+  }
+
+
+
   return (
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>
         <ul className='navbar-lists'>
-          <li><NavLink to="/" className="navbar-link " onClick={() => setMenuIcon(false)}>Home</NavLink></li>
+          {/* <li><NavLink to="/" className="navbar-link " onClick={() => setMenuIcon(false)}>Home</NavLink></li>
           <li><NavLink to="/projects" className="navbar-link " onClick={() => setMenuIcon(false)}>Projects</NavLink></li>
           <li><NavLink to="/priceestimator" className="navbar-link " onClick={() => setMenuIcon(false)}>Cost Estimation</NavLink></li>
           <li><NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink></li>
@@ -167,7 +220,9 @@ const Nav = () => {
               <BsHandbag className='cart-trolley' />
               <span className='cart-total--item'>10</span>
             </NavLink>
-          </li>
+          </li> */}
+
+          <NavbarToggle />
         </ul>
 
         {/* Responsive NavBar */}
