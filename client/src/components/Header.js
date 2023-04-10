@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Nav from './subcomponents/Nav';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useAppContext } from "../context/AppContext"
 
 const MainHeader = styled.header`
   padding: 0 4.8rem;
@@ -16,6 +17,8 @@ const MainHeader = styled.header`
     height: 6rem;
   }
 `;
+
+
 
 const Header = () => {
 

@@ -297,7 +297,7 @@ img {
                 email:email,
                 password: password,
                 password2: password2,
-                tc:tc
+                tc:tc,
             }),
         });
 

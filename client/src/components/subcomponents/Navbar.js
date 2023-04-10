@@ -54,7 +54,6 @@ const Navbar = () => {
         border-radius: 50%;
         font-size: 1.3rem;
         font-weight: 600;
-
         color: #010C80;
         display: grid;
         place-items: center;
@@ -81,13 +80,11 @@ const Navbar = () => {
         display: inline-block;
         z-index: 9999;
         border: ${({ theme }) => theme.colors.black};
-
         .mobile-nav-icon {
           font-size: 4.2rem;
           color: ${({ theme }) => theme.colors.black};
         }
       }
-
       .active .mobile-nav-icon {
         display: none;
         font-size: 4.2rem;
@@ -107,7 +104,6 @@ const Navbar = () => {
         top: 0;
         left: 0;
         background-color: #fff;
-
         display: flex;
         justify-content: center;
         align-items: center;
@@ -149,6 +145,9 @@ const Navbar = () => {
       }
     }
   `;
+
+
+
 
   return (
     <Nav>

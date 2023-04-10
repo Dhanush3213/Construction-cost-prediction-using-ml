@@ -11,32 +11,25 @@ import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./ErrorPage";
-import Login from "./components/auth/Login";
+import Login from "./Pages/Login";
+import SignUp from "./Pages/Signup";
+// import Logout from "./Pages/Logout";
 
-import Register from "./components/auth/Register";
+import Logout from "./Pages/Logout";
+
 import { useAppContext } from "./context/AppContext"
 
 import CostEstimation from "./CostEstimation";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
-import SignUp from "./Pages/Signup";
-import Chatbot from "./Chatbot";
+
 
 
 const App = () => {
-  const { loginState } = useAppContext();
-  const getToken=()=>{
-    const token=localStorage.getItem("token")
-    if(token){
-      return true;
-    }
-    else{
-      return false;
-    }
 
-  }
-const[isAuth,setisAuth]=useState(getToken());
-  console.log("app.js" + loginState);
+  const state = useAppContext();
+
+  console.log("data from app" + state.loginState);
+
+  // console.log("app.js" + loginState);
   const theme = {
     colors: {
       heading: "rgb(24 24 29)",
@@ -62,41 +55,42 @@ const[isAuth,setisAuth]=useState(getToken());
       tab: "998px",
     },
   };
-
   useEffect(() => {
-    localStorage.setItem("login", JSON.stringify(loginState));
-    let state = JSON.parse(localStorage.getItem("login"));
-    console.log(state);
-  }, [loginState])
+    localStorage.setItem("login", JSON.stringify(state.loginState));
+    // let state = JSON.parse(localStorage.getItem("login"));
+    // console.log(state);
+
+  }, [state.loginState])
+
+
+
 
   return (
     <ThemeProvider theme={theme}>
-    <Provider store={store}>
+      {/* <Provider store={store}> */}
       <BrowserRouter>
         <GlobalStyle />
         <Header />
         <Routes>
-
           <Route path="/" element={<Home />} />
           <Route path="/priceestimator" element={<About />}></Route>
 
           <Route path="/contact" element={<Contact />}></Route>
-        
 
           <Route path="/projects" element={<Projects />}></Route>
           <Route path="/singleProject/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />} ></Route>
+          <Route path="/logout" element={<Logout />}></Route>
           <Route path="/costestimation" element={<CostEstimation />}></Route>
-          <Route path="/chatbot" element={<Chatbot />}></Route> 
+
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
-      </Provider>
+      {/* </Provider> */}
     </ThemeProvider>
-
 
   );
 };
