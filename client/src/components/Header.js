@@ -3,7 +3,6 @@ import Nav from './subcomponents/Nav';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { useAppContext } from "../context/AppContext"
 
 const MainHeader = styled.header`
   padding: 0 4.8rem;

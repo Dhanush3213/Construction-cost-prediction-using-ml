@@ -6,22 +6,6 @@ import styled from 'styled-components';
 
 
 const Wrapper = styled.section`
-:root {
-         --color-white: #ffffff;
-         --color-light: #f1f5f9;
-         --color-black: #121212;
-         --color-night: #001632;
-         --color-red: #f44336;
-         --color-blue: #1a73e8;
-         --color-gray: #80868b;
-         --color-grayish: #dadce0;
-         --shadow-normal: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-                0 1px 2px 0 rgba(0, 0, 0, 0.06);
-         --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-                0 2px 4px -1px rgba(0, 0, 0, 0.06);
-         --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      }     
 
     body{
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -91,9 +75,6 @@ img {
     color: #1a73e8;
 }
 
-.forgot {
-    margin-top: 1rem;
-}
 
 .text-links:hover {
     text-decoration: underline;
@@ -189,35 +170,7 @@ img {
         color: #121212;
         margin: 0 1rem;
      }
-
-    .method-control {
-         margin-bottom: 1rem;
-    }
-
-    .method-action {
-        font-family: inherit;
-        font-size: 0.95rem;
-        font-weight: 500;
-        line-height: inherit;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* width: 100%; */
-        height: auto;
-        padding: 0.35rem 1.25rem;
-        outline: none;
-        border: 2px solid #dadce0;
-        border-radius: 2rem;
-        color: #121212;
-        background: #ffffff;
-        text-transform: capitalize;
-        text-rendering: optimizeLegibility;
-        transition: all 0.35s ease;
-      }
-
-    .method-action:hover {
-        background: #f1f5f9;
-      }
+   
 }
 
 .center{
@@ -317,8 +270,9 @@ const CostEstimation = () => {
                             </div>
                         </form>
 
+
                         <div className='pridicated_price_Wrapper center'>
-                            <p>Predicted Price: ${pri_price}</p>
+                            <p>Predicted Price: {Math.round(pri_price)} lakhs</p>
                         </div>
                     </section>
                 </div>
@@ -326,12 +280,6 @@ const CostEstimation = () => {
         </Wrapper>
     )
 }
-
-
-
-
-
-
 
 
 export default CostEstimation

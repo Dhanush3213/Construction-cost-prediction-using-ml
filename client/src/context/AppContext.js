@@ -5,7 +5,6 @@ import reducer from "../reducers/AppReducer";
 // Creating the Context
 const AppContext = createContext();
 
-// const API = "https://api.pujakaitem.com/api/products";
 
 let loginState = () => {
     let state = JSON.parse(localStorage.getItem("login"));

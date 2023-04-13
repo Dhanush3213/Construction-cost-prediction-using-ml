@@ -8,8 +8,6 @@ const reducer = (state, action) => {
         case "PRE_PRICE": {
             return { ...state, pri_price: action.payload }
         }
-        default: return state;
     }
-
 }
 export default reducer;

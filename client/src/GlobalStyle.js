@@ -47,9 +47,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 h1,
-h2,
-h3,
-h4 {
+h2
+ {
    font-family: "Work Sans", sans-serif;
 
 }
@@ -68,17 +67,6 @@ h1 {
   
   }
 
-h3 {
-  font-size: 1.8rem;
-  font-weight: 400;
-}
-
-p, button {
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 1.65rem;
-  line-height: 1.5;
-  font-weight:400;
-}
 
 a {
   text-decoration: none;
@@ -131,6 +119,10 @@ ${"" /* resuable codes section  */}
       color: #5138ee;
     }
 
+.flex{
+  display: flex !important;
+  justify-content: center !important;
+}
    .caption {
       position: absolute;
       top: 15%;

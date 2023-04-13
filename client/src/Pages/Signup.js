@@ -137,7 +137,7 @@ img {
 .form {
     width: 100%;
     height: auto;
-    /* margin-top: 2rem; */
+    // margin-top: 2rem; 
      
     .input-control {
       display: flex;
@@ -229,7 +229,7 @@ img {
         display: flex;
         justify-content: center;
         align-items: center;
-        /* width: 100%; */
+        // width: 100%; 
         height: auto;
         padding: 0.35rem 1.25rem;
         outline: none;
@@ -254,21 +254,20 @@ img {
         padding: 2rem 2.5rem;
     }
 }  
-
+ 
 `
 
-const SignUp = () => {
+const Signup = () => {
 
     const navigate = useNavigate();
 
 
     const [user, setuser] = useState({
-        username: "",
-        first_name: "",
-        last_name: "",
+        name: "",
+        email: "",
         password: "",
-        password_2: "",
-        email: ""
+        password2: "",
+        tc: ""
     });
 
     let name, value;
@@ -282,31 +281,28 @@ const SignUp = () => {
     //! we are sending data to Register route....
     const POSTDATA = async (e) => {
         e.preventDefault();
-        const { username, first_name, last_name, password, password_2, email } = user;
+        const { name, password, password_2, email, tc } = user;
 
         const res = await fetch("http://127.0.0.1:8000/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-
             body: JSON.stringify({
-                username: username,
-                first_name: first_name,
-                last_name: last_name,
+                name: name,
+                email: email,
                 password: password,
-                password_2: password_2,
-                email: email
+                password2: password_2,
+                tc: tc,
             }),
         });
 
-        console.log(" responsoe from backed " + res);
 
-        const data = await res.text();
+        const data = await res.json();
 
         if (data.status === 422 || !data) {
             window.alert("invalid registration");
-            //  console.log("invalid registration");
+            console.log("invalid registration");
         } else {
             window.alert(" registration successfull u can login");
             navigate("/Login");
@@ -315,8 +311,6 @@ const SignUp = () => {
 
     return (
         <Wrapper>
-            {/* <main> */}
-            {/* <body> */}
             <main className="main">
                 <div className="container-login">
                     <section className="wrapper">
@@ -389,10 +383,8 @@ const SignUp = () => {
                     </section>
                 </div>
             </main>
-            {/* </body> */}
-            {/* </main> */}
         </Wrapper>
     )
 }
 
-export default SignUp
+export default Signup

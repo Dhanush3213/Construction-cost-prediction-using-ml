@@ -12,7 +12,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./ErrorPage";
 import Login from "./Pages/Login";
-import SignUp from "./Pages/SignUp";
+import SignUp from "./Pages/Signup";
 // import Logout from "./Pages/Logout";
 
 import Logout from "./Pages/Logout";
@@ -25,11 +25,8 @@ import CostEstimation from "./CostEstimation";
 
 const App = () => {
 
-  const state = useAppContext();
+  const { loginState } = useAppContext();
 
-  console.log("data from app" + state.loginState);
-
-  // console.log("app.js" + loginState);
   const theme = {
     colors: {
       heading: "rgb(24 24 29)",
@@ -56,11 +53,11 @@ const App = () => {
     },
   };
   useEffect(() => {
-    localStorage.setItem("login", JSON.stringify(state.loginState));
+    localStorage.setItem("login", JSON.stringify(loginState));
     // let state = JSON.parse(localStorage.getItem("login"));
     // console.log(state);
 
-  }, [state.loginState])
+  }, [loginState])
 
 
 
