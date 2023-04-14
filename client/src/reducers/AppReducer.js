@@ -1,12 +1,11 @@
 const reducer = (state, action) => {
     switch (action.type) {
         case "USER": {
-            let login = action.payload;
-            return { ...state, loginState: login }
+            return { ...state, loginState: action.payload }
         }
-
-        default: return state;
+        case "PRE_PRICE": {
+            return { ...state, pri_price: action.payload }
+        }
     }
-
 }
 export default reducer;

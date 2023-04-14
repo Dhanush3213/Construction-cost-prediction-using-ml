@@ -24,6 +24,7 @@ const Wrapper = styled.section`
          --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
                 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       }     
+
     body{
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         font-size: 1rem;
@@ -44,6 +45,7 @@ button {
     background: none;
     text-decoration: none;
 }
+
 img {
     display: block;
     width: 100%;
@@ -51,6 +53,7 @@ img {
     -o-object-fit: cover;
     object-fit: cover;
 }
+
 .container-login {
     display: flex;
     justify-content: center;
@@ -61,52 +64,62 @@ img {
     padding: 0 2rem;
     margin: 0 auto;
 }
+
 .ion-logo-apple {
     font-size: 2.0rem;
     line-height: inherit;
     margin-right: 0.6rem;
     color: #121212;
 }
+
 .ion-logo-google {
     font-size: 2.0rem;
     line-height: inherit;
     margin-right: 0.6rem;
     color: #f44336;
 }
+
 .ion-logo-facebook {
     font-size: 2.0rem;
     line-height: inherit;
     margin-right: 0.6rem;
     color: #1a73e8;
 }
+
 .text {
     font-family: inherit;
     line-height: inherit;
     text-transform: unset;
     text-rendering: optimizeLegibility;
 }
+
 .text-large {
     font-size: 2.5rem;
     font-weight: 600;
     color: #121212;
 }
+
 .text-normal {
     font-size: 1.5rem;
     font-weight: 400;
     color: #121212;
     margin-bottom: 1.8rem;
 }
+
 .text-links {
     font-size: 1.4rem;
     font-weight: 400;
     color: #1a73e8;
 }
+
 .forgot {
     margin-top: 1rem;
 }
+
 .text-links:hover {
     text-decoration: underline;
 }
+
 .main .wrapper {
     max-width: 47rem;
     width: 100%;
@@ -119,6 +132,7 @@ img {
     background: #ffffff;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
                 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
 .form {
     width: 100%;
     height: auto;
@@ -130,6 +144,7 @@ img {
       justify-content: space-between;
       margin-bottom: 1.25rem;
       }
+
      .input-field {
         font-family: inherit;
         font-size: 1.4rem;
@@ -146,6 +161,7 @@ img {
         text-transform: unset;
         text-rendering: optimizeLegibility;
         }
+
       .input-submit {
         margin-top: 1rem;
         font-family: inherit;
@@ -168,6 +184,7 @@ img {
         text-rendering: optimizeLegibility;
 }
 }
+
     .striped {
         display: flex;
         flex-direction: row;
@@ -175,6 +192,7 @@ img {
         align-items: center;
         margin: 1rem 0;
       }
+
     .striped-line {
         flex: auto;
         flex-basis: auto;
@@ -183,6 +201,7 @@ img {
         height: 2px;
         background: #dadce0;
      }
+
     .striped-text {
         font-family: inherit;
         font-size: 1rem;
@@ -191,9 +210,11 @@ img {
         color: #121212;
         margin: 0 1rem;
      }
+
     .method-control {
          margin-bottom: 1rem;
     }
+
     .method-action {
         font-family: inherit;
         font-size: 0.95rem;
@@ -214,22 +235,26 @@ img {
         text-rendering: optimizeLegibility;
         transition: all 0.35s ease;
       }
+
     .method-action:hover {
         background: #f1f5f9;
       }
 }
+
+
 @media screen and (max-width: 1280px) {
     .main .wrapper {
         max-width: 38rem;
         padding: 2rem 2.5rem;
     }
 }  
+
 `
 
 const Login = () => {
     const { state, dispatch } = useAppContext();
 
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
@@ -239,13 +264,13 @@ const Login = () => {
         e.preventDefault();
 
         // we are sending the data to backend(to signin route)server/client/src/components/Login.js
-        const res = await fetch("http://127.0.0.1:8000/api/user/login/", {
+        const res = await fetch("http://127.0.0.1:8000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                email: email,
+                username: username,
                 password: password,
             }),
         });
@@ -317,12 +342,12 @@ const Login = () => {
                         </div>
                         <form name="signin" className="form">
                             <div className="input-control">
-                                <label htmlFor="Email" className="input-label" hidden>Username</label>
-                                <input type="Email" value={email}
-                                    name="email"
+                                <label htmlFor="username" className="input-label" hidden>Username</label>
+                                <input type="text" value={username}
+                                    name="username"
                                     onChange={(e) => {
                                         // console.log(e.target.value);
-                                        setEmail(e.target.value);
+                                        setUsername(e.target.value);
                                     }} id="email" className="input-field" placeholder="Enter your username" />
                             </div>
                             <div className="input-control">
@@ -374,3 +399,4 @@ const Login = () => {
 }
 
 export default Login
+

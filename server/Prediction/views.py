@@ -11,6 +11,7 @@ from rest_framework.decorators import api_view
 from .serializers import MySerializer,HomePriceSerializer
 from django.conf import settings
 import requests
+import locale
 
 
 # Create your views here.
@@ -25,17 +26,14 @@ class HousePricePredictionView(APIView):
 
     def post(self, request):
         # Load the trained model from a pickle file
-        with open('D://final year project/construction cost estimation using ml/constructionproj/server/Prediction/classifier/banglore_home_prices_model.pickle', 'rb') as f:
+        with open('./Prediction/classifier/banglore_home_prices_model.pickle', 'rb') as f:
             model = pickle.load(f)
         
         # Get the input data from the request
         data = request.data
         def predict_price(location, sqft, bath, bhk):
-
-            x = pd.read_csv("D://final year project/construction cost estimation using ml/constructionproj/server/Prediction/classifier/train.csv")
+            x = pd.read_csv("./Prediction/classifier/train.csv")
             loc_index = np.where(x.columns == location)[0]
-
-
             inputs = np.zeros(len(x.columns))
     
             inputs[0] = sqft
@@ -47,15 +45,23 @@ class HousePricePredictionView(APIView):
         
         # Perform prediction using the trained model
         input_features =predict_price(data['location'], data['sqft'], data['bath'],data['bhk'])
-        prediction = model.predict([input_features])[0]
-        
+        prediction =round(int(100000*(model.predict([input_features])[0])))
+        location=data['location']
+
         # Save the input data and predicted price to the database
         house = HomePrice(location=data['location'],  sqft=data['sqft'], bath=data['bath'], bhk=data['bhk'],price=prediction)
         house.save()
+        locale.setlocale(locale.LC_MONETARY, 'en_IN')
+        prediction=locale.currency(prediction, grouping=True)
+        if prediction==None:
+            # Return the predicted house price as a response
+           return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+           return Response({'prediction': prediction,'location':location},status=status.HTTP_200_OK)
+           
         
-        # Return the predicted house price as a response
-        return Response({'prediction': prediction})
-
+        return Response({'prediction': prediction,'location':location},status=status.HTTP_200_OK)
+    
 
 @api_view(['GET'])
 def home_price_list(request):
@@ -72,6 +78,8 @@ def home_price_detail(request, pk):
 
     serializer = HomePriceSerializer(home_price)
     return Response(serializer.data)
+
+
 
 
 class LocationMapView(APIView):

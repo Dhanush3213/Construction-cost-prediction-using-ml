@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\final year project\Simple-login-API-master\env
+set VIRTUAL_ENV=D:\django rest framework learning\cost\server\env
 
 if not defined PROMPT set PROMPT=$P$G
 

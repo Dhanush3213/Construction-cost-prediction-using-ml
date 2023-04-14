@@ -12,7 +12,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./ErrorPage";
 import Login from "./Pages/Login";
-import SignUp from "./Pages/Signup";
+import SignUp from "./Pages/SignUp";
 // import Logout from "./Pages/Logout";
 
 import Logout from "./Pages/Logout";
@@ -81,7 +81,7 @@ const App = () => {
           <Route path="/singleProject/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />} ></Route>
+          <Route path="/signup" element={<SignUp />} ></Route>
           <Route path="/logout" element={<Logout />}></Route>
           <Route path="/costestimation" element={<CostEstimation />}></Route>
 

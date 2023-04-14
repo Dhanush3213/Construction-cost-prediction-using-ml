@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\final year project\Simple-login-API-master\env"
+VIRTUAL_ENV="D:\django rest framework learning\cost\server\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

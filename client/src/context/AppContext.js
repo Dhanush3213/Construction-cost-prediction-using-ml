@@ -15,8 +15,9 @@ let loginState = () => {
 // Initial-state for API-fetching
 const initialState = {
     loginState: loginState(),
-    // isLoading: false,
-    // isError: false,
+    isLoading: false,
+    isError: false,
+    pri_price: 0,
     // products: [],
     // featureProducts: [],
     // singleproduct: {},
@@ -29,7 +30,6 @@ const initialState = {
 const AppProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
-
 
     return (
         <AppContext.Provider value={{ ...state, dispatch }}>{children}</AppContext.Provider>
