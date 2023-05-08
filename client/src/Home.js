@@ -1,87 +1,91 @@
 import React from 'react'
 import Heading from "./Heading"
 import "./Home.css"
-import ChatBot from "react-simple-chatbot";
-import { Segment } from "semantic-ui-react";
+// import ChatBot from "react-simple-chatbot";
+// import { Segment } from "semantic-ui-react";
+import Chat from "./Chat"
 
 const Home = () => {
-  const steps = [
+  // const steps = [
+  //   {
+  //     id: "Greet",
+  //     message: "Hello, Welcome to our Website",
+  //     trigger: "Done",
+  //   },
+  //   {
+  //     id: "Done",
+  //     message: "Please enter your city!",
+  //     trigger: "waiting1",
+  //   },
+  //   {
+  //     id: "waiting1",
+  //     user: true,
+  //     trigger: "Name",
+  //   },
+  //   {
+  //     id: "Name",
+  //     message: "Hi {previousValue}, Please select ur location",
+  //     trigger: "waiting1",
+  //   },
 
-    {
+  //   {
+  //     id: "waiting1",
+  //     user: true,
+  //     trigger: "Name",
+  //   },
+  //   {
+  //     id: "Name",
+  //     message: " Please select ur sq",
+  //     trigger: "waiting1",
+  //   },
 
-      id: "Greet",
+  //   {
+  //     id: "waiting1",
+  //     user: true,
+  //     trigger: "Name",
+  //   },
 
-      message: "Hello, Welcome to our Website",
+  //   {
+  //     id: "Name",
+  //     message: " Please select ur bhk",
+  //     trigger: "waiting1",
+  //   },
 
-      trigger: "Done",
+  //   {
+  //     id: "waiting1",
+  //     user: true,
+  //     trigger: "Name",
+  //   },
+  //   {
+  //     id: "issues",
+  //     options: [
+  //       {
+  //         value: "React",
+  //         label: "React",
+  //         trigger: "React",
+  //       },
+  //       {
+  //         value: "Angular",
+  //         label: "Angular",
+  //         trigger: "Angular"
+  //       },
+  //     ],
 
-    },
+  //   },
 
-    {
-
-      id: "Done",
-
-      message: "Please enter your name!",
-
-      trigger: "waiting1",
-
-    },
-
-    {
-
-      id: "waiting1",
-
-      user: true,
-
-      trigger: "Name",
-
-    },
-
-    {
-
-      id: "Name",
-
-      message: "Hi {previousValue}, Please select your issue",
-
-      trigger: "issues",
-
-    },
-
-    {
-
-      id: "issues",
-
-      options: [
-
-        {
-
-          value: "React",
-
-          label: "React",
-
-          trigger: "React",
-
-        },
-
-        { value: "Angular", label: "Angular", trigger: "Angular" },
-
-      ],
-
-    },
-
-    {
-      id: "React",
-      message:
-        "Thanks for letting your React issue, Our team will resolve your issue ASAP",
-      end: true,
-    },
-    {
-      id: "Angular",
-      message:
-        "Thanks for letting your Angular issue, Our team will resolve your issue ASAP",
-      end: true,
-    },
-  ];
+  //   {
+  //     id: "React",
+  //     message:
+  //       "Thanks for letting your React issue, Our team will resolve your issue ASAP",
+  //     end: true,
+  //   },
+  //   {
+  //     id: "Angular",
+  //     message:
+  //       "Thanks for letting your Angular issue, Our team will resolve your issue ASAP",
+  //     end: true,
+  //   },
+  // ];
   return (
     <>
 
@@ -112,9 +116,13 @@ const Home = () => {
 
         </div>
       </section>
-      <Segment floated="right">
+
+      <Chat />
+
+
+      {/* <Segment floated="right">
         <ChatBot steps={steps} />
-      </Segment>
+      </Segment> */}
     </>
 
   )

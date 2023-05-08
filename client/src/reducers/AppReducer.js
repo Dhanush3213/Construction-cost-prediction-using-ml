@@ -8,6 +8,19 @@ const reducer = (state, action) => {
         case "PRE_PRICE": {
             return { ...state, pri_price: action.payload }
         }
+        case "location": {
+            return { ...state, locationone: action.payload }
+        }
+        case "sqfeet": {
+            return { ...state, sqftone: action.payload }
+        }
+        case "bedroom": {
+            return { ...state, bedone: action.payload }
+        }
+        case "bath": {
+            return { ...state, bathone: action.payload }
+        }
+
         case "Price_Projects":
             // console.log(state.pri_price);
             if (state.pri_price) {

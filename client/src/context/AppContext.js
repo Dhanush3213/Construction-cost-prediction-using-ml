@@ -21,6 +21,11 @@ const initialState = {
     isError: false,
     pri_price: 0,
     houseData: HouseData,
+    locationone: "",
+    sqftone: "",
+    bedone: "",
+    bathone: ""
+
     // products: [],
     // featureProducts: [],
 };
