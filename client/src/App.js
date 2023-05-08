@@ -4,7 +4,7 @@ import Home from "./Home"
 import About from "./CostEstimation"
 import Contact from "./Contact"
 import Projects from "./Projects"
-import SingleProject from "./SingleProject"
+import SingleProject from "./SingleProject";
 import Wishlist from "./Wishlist"
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
@@ -75,12 +75,13 @@ const App = () => {
           <Route path="/contact" element={<Contact />}></Route>
 
           <Route path="/projects" element={<Projects />}></Route>
-          <Route path="/singleProject/:id" element={<SingleProject />}></Route>
+          <Route path="/project/:id" element={<SingleProject />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />} ></Route>
           <Route path="/logout" element={<Logout />}></Route>
           <Route path="/costestimation" element={<CostEstimation />}></Route>
+          {/* <Route path="/admin" element={<admin />}></Route> */}
 
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>

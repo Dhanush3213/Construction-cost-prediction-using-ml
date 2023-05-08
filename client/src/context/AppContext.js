@@ -1,9 +1,10 @@
 import { createContext, useContext, useReducer } from "react";
 // import axios from "axios";
 import reducer from "../reducers/AppReducer";
-
+import { HouseData } from "../Constants"
 // Creating the Context
 const AppContext = createContext();
+
 
 
 let loginState = () => {
@@ -13,15 +14,15 @@ let loginState = () => {
 
 // Initial-state for API-fetching
 const initialState = {
+    Projects: HouseData,
+    price_Based_projects: [],
     loginState: loginState(),
     isLoading: false,
     isError: false,
     pri_price: 0,
+    houseData: HouseData,
     // products: [],
     // featureProducts: [],
-    // singleproduct: {},
-    // is_signle_Loading: false,
-    // is_single_Error: false,
 };
 
 // console.log(initialState.featureProducts);

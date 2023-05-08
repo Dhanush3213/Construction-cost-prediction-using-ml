@@ -1,10 +1,10 @@
 
+
+
 import React, { useState } from 'react';
-// import ChatBox from './components/ChatBox';
 import { useAppContext } from './context/AppContext';
 import styled from 'styled-components';
-
-
+import Project from './components/Project';
 const Wrapper = styled.section`
 
     body{
@@ -35,7 +35,9 @@ img {
     -o-object-fit: cover;
     object-fit: cover;
 }
-
+.grid{
+        gap: 6rem;  
+   }
 .container-cost {
     display: flex;
     justify-content: center;
@@ -46,6 +48,158 @@ img {
     padding: 0 2rem;
     margin: 0 auto;
 }
+  
+
+   figure {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    /* transition: all 3s linear; */
+    transition: .3s ease-in-out;
+    /* &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: all 0.2s linear;
+      cursor: pointer;
+    }
+    &:hover::after {
+      width: 100%;
+    } */
+    &:hover img {
+      transform: scale(1.2);
+    }
+    img {
+      max-width: 100%;
+      margin-top: 1.5rem;
+      height: 22rem;
+      transition: all 0.2s linear;
+    }
+
+    .caption {
+      position: absolute;
+      top: 10%;
+      right: 3%;
+      text-transform: uppercase;
+      background-color: ${({ theme }) => theme.colors.bg};
+      color: ${({ theme }) => theme.colors.helper};
+      padding: 0.7rem 1.4rem;
+      font-size: .8rem;
+      border-radius: 2rem;
+    }
+  }
+
+  .card {
+    /* background-color: #fff; */
+   /* background-color: ${({ theme }) => theme.colors.bg}; */
+    border-radius: 1rem;
+    width: 350px;
+    margin-bottom: 15rem;
+    position: relative;
+    
+   &:hover{
+          .card-data{
+            background-color:#60B8C6 ;
+            color: white;
+            p,h3,h4{
+             color: white;
+                } 
+           }
+   }
+
+    .card-data {
+      padding: 0 2rem;
+      position: absolute;
+      width: 32rem;
+      height: 21rem;
+      top: 19rem;
+      left: 6rem;
+      box-shadow: -1px 0 5px #888;
+      background-color: #fff;
+    }
+    .card-data-title{
+           margin-top: 2rem;
+           font-size: 1.3rem ;
+           color: #303134;
+           font-weight: 700;
+          }
+     .card-data-details-flex {
+      margin: 2.3rem 0 2rem 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .card-data-details-flex  p{
+      font-family: 'Lato', sans-serif;
+      color: #303134;
+      font-size: 1.1rem;
+      font-weight: 400 ;
+      letter-spacing: .6px;
+      margin-bottom: 4px;
+    }
+    .card-data-details-flex h4{
+      font-family: 'Lato', sans-serif;
+      color: #303134;
+      font-size: 1.2rem;
+      font-weight: 700 ;
+      letter-spacing: .6px;
+      margin: 0;
+    }
+
+    .c.card-data-details-flex .inside{
+      display: flex;
+      justify-content: space-between;
+    }
+
+
+    .left{
+      display: flex !important;
+      gap: 1.5rem !important;
+    }
+    .icon{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.6rem;
+    }
+    .layers{
+      padding-right: 2.5rem;
+    }
+    .Know_more{
+      width: 100%;
+     display: flex;
+     justify-content: end;
+     padding-right: 11rem;
+    }
+
+    .btn {
+      margin: 2rem auto;
+      background-color: rgb(0 0 0 / 0%);
+      border: 0.1rem solid rgb(98 84 243);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background-color: rgb(98 84 243);
+      }
+
+      &:hover a {
+        color: #fff;
+      }
+      a {
+        color: rgb(98 84 243);
+        font-size: 1.4rem;
+      }
+    }
+  }
 
 
 .text {
@@ -192,7 +346,13 @@ img {
     justify-content: end !important;
     align-items: center !important;
 }
-
+.map{
+    display: block;
+    width: 100%;
+    height: auto;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
 
 @media screen and (max-width: 1280px) {
     .main .wrapper {
@@ -203,83 +363,119 @@ img {
 
 `
 
-
 const CostEstimation = () => {
-    const { pri_price, dispatch } = useAppContext();
+  const { pri_price, dispatch, price_Based_projects } = useAppContext();
+
+  const [location, setLocation] = useState("");
+  const [sqft, setSqft] = useState();
+  const [bathroom, setBathroom] = useState();
+  const [bhk, setBhk] = useState();
 
 
-    const [location, setLocation] = useState("");
-    const [sqft, setSqft] = useState("");
-    const [bathroom, setBathroom] = useState("");
-    const [bhk, setBhk] = useState("");
+  const handleSubmit = async e => {
+    e.preventDefault();
+    let sqftint = parseInt(sqft);
+    let bathroomInt = parseInt(bathroom);
+    let bhkInt = parseInt(bhk);
 
+    const res = await fetch('http://127.0.0.1:8000/api/predict/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        location: location,
+        sqft: sqftint,
+        bhk: bathroomInt,
+        bath: bhkInt,
+      })
+    });
 
-    const handleSubmit = async e => {
-        e.preventDefault();
+    const data = await res.json();
+    setLocation(data.location)
 
-        const res = await fetch('http://127.0.0.1:8000/api/predict', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                location: location,
-                sqft: sqft,
-                bath: bathroom,
-                bhk: bhk,
-            })
-        });
+    console.log(data.prediction)
+    if (res.status === 400 || !data) {
+      window.alert("Please Wait or try again");
+    } else {
+      dispatch({ type: "PRE_PRICE", payload: data.prediction });
+      dispatch({ type: "Price_Projects" });
+    }
+  };
 
-        const data = await res.json();
-
-        if (res.status === 400 || !data) {
-            window.alert("Please Try Again");
-        } else {
-            dispatch({ type: "PRE_PRICE", payload: res.prediction });
-        }
-    };
-
-    return (
-        <Wrapper>
-
-            <main className="main">
-                <div className="container-cost">
-                    <section className="wrapper">
-                        <div className="heading">
-                            <h1 className="text text-large">Price Prediction</h1>
-                        </div>
-                        {/* <ChatBox /> */}
-                        <form className='form'>
-                            <div className='input-control'>
-                                <label htmlFor="Location" className="input-label" hidden >Location :</label>
-                                <input type="text" name="location" className="input-field" value={location} placeholder="Enter location " onChange={e => setLocation(e.target.value)} />
-                            </div>
-                            <div className='input-control'>
-                                <label htmlFor="Location" className="input-label" hidden >Location :</label>
-                                <input type="number" value={sqft} onChange={e => setSqft(e.target.value)} name="location" className="input-field" placeholder="Enter Squarefeet " />
-                            </div>
-                            <div className='input-control'>
-                                <label htmlFor="Location" className="input-label" hidden >Location :</label>
-                                <input type="number" value={bhk} onChange={e => setBhk(e.target.value)} name="bhk" className="input-field" placeholder="Enter BHK " />
-                            </div>
-                            <div className='input-control'>
-                                <label htmlFor="Location" className="input-label" hidden >Location :</label>
-                                <input type="number" placeholder="No of bathrooms  " value={bathroom} onChange={e => setBathroom(e.target.value)} name="bathroom" className="input-field" />
-                            </div>
-
-                            <div className="input-control cost-button">
-                                <input type="submit" name="submit" onClick={handleSubmit} className="input-submit" value="Estimate Price" />
-                            </div>
-                        </form>
-
-
-                        <div className='pridicated_price_Wrapper center'>
-                            <p>Predicted Price: {Math.round(pri_price)} lakhs</p>
-                        </div>
-                    </section>
+  return (
+    <>
+      <Wrapper>
+        <main className="main">
+          <div className="container-cost">
+            <section className="wrapper">
+              <div className="heading">
+                <h1 className="text text-large">Price Prediction</h1>
+              </div>
+              <form className='form'>
+                <div className='input-control'>
+                  <label htmlFor="Location" className="input-label" hidden >Location :</label>
+                  <input type="text" name="location" className="input-field" value={location} placeholder="Enter location " onChange={e => setLocation(e.target.value)} />
                 </div>
-            </main>
-        </Wrapper>
-    )
+                <div className='input-control'>
+                  <label htmlFor="Location" className="input-label" hidden >Location :</label>
+                  <input type="number" value={sqft} onChange={e => setSqft(e.target.value)} name="location" className="input-field" placeholder="Enter Squarefeet " />
+                </div>
+                <div className='input-control'>
+                  <label htmlFor="Location" className="input-label" hidden >Location :</label>
+                  <input type="number" value={bhk} onChange={e => setBhk(e.target.value)} name="bhk" className="input-field" placeholder="Enter BHK " />
+                </div>
+                <div className='input-control'>
+                  <label htmlFor="Location" className="input-label" hidden >Location :</label>
+                  <input type="number" placeholder="No of bathrooms  " value={bathroom} onChange={e => setBathroom(e.target.value)} name="bathroom" className="input-field" />
+                </div>
+
+                <div className="input-control cost-button">
+                  <input type="submit" name="submit" onClick={handleSubmit} className="input-submit" value="Estimate Price" />
+                </div>
+              </form>
+
+              <div className='pridicated_price_Wrapper center'>
+                <p>Predicted Price: {pri_price} Lacks</p>
+              </div>
+
+            </section>
+          </div>
+        </main>
+
+        <div className='grid grid-three-column'>
+          {
+            price_Based_projects.map((Home) => <Project Home={Home} key={Home.id} />)
+          }
+        </div>
+      </Wrapper>
+
+
+
+      {/* <div className="App">
+        <div style={{ position: "relative", height: "800px", width: "700px" }}>
+          <MainContainer>
+            <ChatContainer>
+              <MessageList
+                scrollBehavior="smooth"
+                typingIndicator={isTyping ? <TypingIndicator content="ChatGPT is typing" /> : null}
+              >
+                {messages.map((message, i) => {
+                  console.log(message)
+                  return <Message key={i} model={message} />
+                })}
+              </MessageList>
+              <MessageInput placeholder="Type message here" onSend={handleSend} />
+            </ChatContainer>
+          </MainContainer>
+        </div>
+      </div> */}
+
+
+    </>
+  )
 }
 
 
 export default CostEstimation
+
+
+

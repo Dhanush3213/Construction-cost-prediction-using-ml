@@ -8,6 +8,27 @@ const reducer = (state, action) => {
         case "PRE_PRICE": {
             return { ...state, pri_price: action.payload }
         }
+        case "Price_Projects":
+            // console.log(state.pri_price);
+            if (state.pri_price) {
+                let low = 0;
+                let high = 0;
+                let tempData = state.Projects.filter((curElem, i) => {
+                    low = curElem.ProjectFields.price - 10;
+                    high = curElem.ProjectFields.price + 10;
+                    if (low <= state.pri_price && high >= state.pri_price) {
+                        return curElem;
+                    }
+                })
+                console.log(tempData);
+
+                return { ...state, price_Based_projects: tempData }
+
+            }
     }
 }
 export default reducer;
+
+
+
+

@@ -13,7 +13,7 @@ export const HouseData = [
             "floors": "G+1",
             "location": "Bangalore",
             "packagename": "Premium",
-            "price": "39.30 Lakh",
+            "price": 39.30,
             "totalarea": "1920 SqFt",
         },
 
@@ -68,7 +68,7 @@ export const HouseData = [
             "floors": "G+3",
             "location": "Nagashettyhalli",
             "packagename": "Premium",
-            "price": "56.45 Lakh",
+            "price": 29.45,
             "totalarea": "1200 SqFt",
         },
         "ProjectPlans": {
@@ -123,7 +123,7 @@ export const HouseData = [
             "floors": "G+1",
             "location": "Bangalore",
             "packagename": "Premium",
-            "price": "39.65 Lakh",
+            "price": 34.65,
             "totalarea": "1650 SQFT",
         },
         "ProjectPlans": {
@@ -188,7 +188,7 @@ export const HouseData = [
             "floors": "G+2",
             "location": "Bangalore",
             "packagename": "Premium",
-            "price": "69.56 Lakh",
+            "price": 69.56,
             "totalarea": "1500 SQFT",
         },
         "ProjectPlans": {
@@ -236,7 +236,7 @@ export const HouseData = [
             "floors": "G+2",
             "location": "Bangalore",
             "packagename": "Standard",
-            "price": "42.70 Lakhs",
+            "price": 150.70,
             "totalarea": "800 SQFT",
         },
         "ProjectPlans": {
@@ -296,7 +296,7 @@ export const HouseData = [
             "floors": "G+1",
             "location": "RR Nagar",
             "packagename": "Premium",
-            "price": "50.65 Lakhs",
+            "price": 50.65,
             "totalarea": "3200 sft",
 
         },
@@ -360,7 +360,7 @@ export const HouseData = [
             "floors": "G+1",
             "location": "Electronic City",
             "packagename": "Standard",
-            "price": "45.65 Lakhs",
+            "price": 45.65,
             "totalarea": "3100 Sqft",
         },
         "ProjectPlans": {
@@ -390,7 +390,7 @@ export const HouseData = [
             "floors": "G+1",
             "location": "Coonoor",
             "packagename": "Premium",
-            "price": "73.45Lakhs",
+            "price": 71.4,
             "totalarea": "4903 Sqft",
 
         },
@@ -475,7 +475,7 @@ export const HouseData = [
             "floors": "G+1",
             "location": "Kottara Chowki, Mangaluru",
             "packagename": "Green Home",
-            "price": "51 Lakhs",
+            "price": 51.55,
             "totalarea": "2600 Sqft",
             "howitallstarted": "<p>The client, sitting in London wanted to build a home in Mangalore. After extensive searching, the connection between Janet &amp; buildAhome was formed. The true use of technology &amp; easily facilitated digital communication made the home possible. With a conscious eco-friendly thought &amp; an equally responsible architecture is the result, that is URVI</p>\n",
 
@@ -571,7 +571,7 @@ export const HouseData = [
     //         "floors": "G+1",
     //         "location": "Davangere",
     //         "packagename": "Standard",
-    //         "price": "38 Lakhs",
+    //         "price": 38,
     //         "totalarea": "1800 Sqft",
     //         "howitallstarted": "<p><span style=\"font-weight: 400;\">We are a family with growing children, and the rental home we were living in was not sufficient for a family like us. That is when my wife and I actually started to give a serious thought of constructing a new home at our 30&#215;40 site located here in Giriyappa Layout, Davangere. I had contacted a lot of local contractors in my area, but since I am a working employee, I knew that I cannot give my 100% time in monitoring the construction work on site and also the quality of construction by local contractors seem to be unsatisfactory as they wouldn’t be expertise technically, so I started searching for a turnkey solution provider who will be confidently working on my project without mine or my family’s day to day presence on site. One day when I was casually browsing on internet I found buildAhome&#8217;s advertisement. In the month of march, 2020 just before the COVID pandemic had started I requested the call enquiry, buildAhome sales &amp; marketing team contacted me, and then right from designing to agreement signing and key handover all the process went completely smooth even during the social difficult times. Thanks to buildAhome for constructing my dream home in a very professional mannerism exactly as per my family’s requirement.</span></p>\n",
 
@@ -674,7 +674,7 @@ export const HouseData = [
     //         "floors": "G+3",
     //         "location": "Belandur",
     //         "packagename": "Standard",
-    //         "price": "54 Lakhs",
+    //         "price": 54,
     //         "totalarea": "4099 Sqft",
 
     //     },
@@ -730,7 +730,7 @@ export const HouseData = [
     //         "floors": "G+2",
     //         "location": "Vijayanagar 4th stage Mysore",
     //         "packagename": "Premium",
-    //         "price": "70 Lakhs",
+    //         "price": 70,
     //         "totalarea": "3750 sft",
 
     //     },
@@ -807,7 +807,7 @@ export const HouseData = [
     //         "floors": "G+2",
     //         "location": "Doddajala",
     //         "packagename": "Premium",
-    //         "price": "76 lakhs",
+    //         "price": 76,
     //         "totalarea": "3400 Sqft",
 
     //     },
@@ -901,7 +901,7 @@ export const HouseData = [
     //         "floors": "G+2",
     //         "location": "J P Nagar, Bangalore",
     //         "packagename": "High Class",
-    //         "price": "93.60 Lakhs",
+    //         "price": "9360,
     //         "totalarea": "5700 Sqft",
 
     //     },
@@ -965,7 +965,7 @@ export const HouseData = [
     //         "floors": "G+2",
     //         "location": "Doddajala",
     //         "packagename": "Premium",
-    //         "price": "76 lakhs",
+    //         "price": 76,
     //         "totalarea": "3400 Sqft",
 
     //     },
@@ -1035,7 +1035,7 @@ export const HouseData = [
     //         "floors": "G+3",
     //         "location": "Bhoopsandra",
     //         "packagename": "Premium",
-    //         "price": "67 lakhs",
+    //         "price": 67,
     //         "totalarea": "4150 Sqft",
     //     },
     //     "ProjectPlans": {

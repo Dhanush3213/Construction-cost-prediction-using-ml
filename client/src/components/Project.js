@@ -6,13 +6,14 @@ import { FiLayers } from 'react-icons/fi';
 import { NavLink } from "react-router-dom";
 // import FormatPrice from "../Helpers/FormatPrice"
 
+
 const Project = ({ Home }) => {
     // const { id, name, image, price, category } = curElem;
-    const { title, sourceUrl } = Home;
+    const { title, sourceUrl, id } = Home;
     const { clientname, floors, location, price, totalarea, packagename } = Home?.ProjectFields;
 
     return (
-        <NavLink to={`/singleproduct/${1}`}>
+        <NavLink to={`/project/${id}`}>
             <div className="card">
                 <figure>
                     <img src={sourceUrl} alt="name" />
@@ -63,7 +64,7 @@ const Project = ({ Home }) => {
                             </div>
                             <div className="card-mini-details">
                                 <p className="card-data--price">Cost </p>
-                                <p className="card-data--price">{price} </p>
+                                <p className="card-data--price">{price} lakhs</p>
                             </div>
                         </div>
                     </div>
