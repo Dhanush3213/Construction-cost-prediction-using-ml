@@ -43,67 +43,7 @@
     opacity: 0.9;
 }
 
-.formHero {
-    background-color: #fff;
-    border-radius: 5px;
-    margin-top: 50px;
-    padding: 20px 35px;
-}
 
-.formHero input {
-    padding: 10px;
-    width: 100%;
-    border: 1px solid rgba(128, 128, 128, 0.2);
-    margin-top: 5px;
-    border-radius: 5px;
-}
-
-.formHero span {
-    font-size: 14px;
-    color: grey;
-}
-
-.formHero input::placeholder {
-    font-size: 17px;
-    color: black;
-}
-
-textarea,
-input {
-    border: none;
-    outline: none;
-    background: none;
-}
-
-.background {
-    padding: 80px 0;
-    position: relative;
-    background: #f7f9fc;
-}
-
-.grid5 {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 30px;
-}
-
-label {
-    color: #2d3954;
-    font-size: 14px;
-}
-
-.mtop {
-    margin-top: 50px;
-}
-
-h4 {
-    font-weight: 500;
-    margin-top: 10px;
-}
-
-.shadow {
-    box-shadow: 0 0 20px 0 rgb(112 121 138 / 18%);
-}
 
 .padding {
     padding: 80px 0;
@@ -130,16 +70,6 @@ button {
 }
 
 
-
-.formHero .box:nth-child(1) {
-    border-left: none;
-}
-
-.formHero h4 {
-    font-weight: 500 !important;
-    font-size: 1.8rem !important;
-}
-
 button i {
     color: #fff;
     margin-right: 5px;
@@ -151,16 +81,4 @@ button i {
         padding-top: 30%;
     }
 
-    .formHero {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .formHero .box {
-        border-left: none;
-    }
-
-    .formHero input {
-        width: 100%;
-    }
 }

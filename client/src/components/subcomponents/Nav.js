@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { BsHandbag } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useAppContext } from "../../context/AppContext";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState(false);
-
 
   const Nav = styled.nav`
     .navbar-lists {
@@ -43,41 +41,8 @@ const Nav = () => {
     .close-outline {
       display: none;
     }
-    .cart-trolley--link {
-      position: relative;
-      .cart-trolley {
-        position: relative;
-        font-size: 3.4rem;
-      }
-      .cart-total--item {
-        position: absolute;
-        width: 2.4rem;
-        height: 2.4rem;
-        background-color: #000;
-        border-radius: 50%;
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: #010C80;
-        display: grid;
-        place-items: center;
-        top: 33%;
-        left: 14%;
-        /* background-color: ${({ theme }) => theme.colors.helper}; */
-        background-color: transparent;
-        &:hover,
-        &:active {
-          color: ${({ theme }) => theme.colors.helper};
-        }
-      }
-    }
-    .user-login--name {
-      text-transform: capitalize;
-    }
-    .user-logout,
-    .user-login {
-      font-size: 1.4rem;
-      padding: 0.8rem 1.4rem;
-    }
+   
+ 
     @media (max-width: ${({ theme }) => theme.media.mobile}) {
       .mobile-navbar-btn {
         display: inline-block;
@@ -129,30 +94,12 @@ const Nav = () => {
           font-size: 4.2rem;
         }
       }
-      .cart-trolley--link {
-        position: relative;
-        .cart-trolley {
-          position: relative;
-          font-size: 5.2rem;
-        }
-        .cart-total--item {
-          width: 4.2rem;
-          height: 4.2rem;
-          font-size: 1.8rem;
-        }
-      }
-      .user-logout,
-      .user-login {
-        font-size: 2.2rem;
-        padding: 0.8rem 1.4rem;
-      }
+      
     }
   `;
 
   const NavbarToggle = () => {
-
     const { loginState } = useAppContext();
-
 
     if (loginState) {
       return (
@@ -162,14 +109,6 @@ const Nav = () => {
           <li><NavLink to="/priceestimator" className="navbar-link " onClick={() => setMenuIcon(false)}>Cost Estimation</NavLink></li>
           <li><NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink></li>
           <li><NavLink to="/logout" className="navbar-link " onClick={() => setMenuIcon(false)}>Logout</NavLink></li>
-
-          <li>
-            <NavLink to="/wishlist" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
-              <BsHandbag className='cart-trolley' />
-              <span className='cart-total--item'>10</span>
-            </NavLink>
-          </li>
-
         </>
       )
     } else {
@@ -181,21 +120,10 @@ const Nav = () => {
           <li><NavLink to="/contact" className="navbar-link " onClick={() => setMenuIcon(false)}>Contact</NavLink></li>
           <li><NavLink to="/login" className="navbar-link " onClick={() => setMenuIcon(false)}>Login</NavLink></li>
           <li><NavLink to="/signup" className="navbar-link " onClick={() => setMenuIcon(false)}>SignUp</NavLink></li>
-          {/* 
-          <li>
-            <NavLink to="/wishlist" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
-              <BsHandbag className='cart-trolley' />
-              <span className='cart-total--item'>10</span>
-            </NavLink>
-          </li> */}
-
         </>
       );
     }
   }
-
-
-
   return (
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>

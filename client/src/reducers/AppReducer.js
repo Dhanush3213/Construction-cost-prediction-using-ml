@@ -8,17 +8,17 @@ const reducer = (state, action) => {
         case "PRE_PRICE": {
             return { ...state, pri_price: action.payload }
         }
-        case "location": {
-            return { ...state, locationone: action.payload }
+        case "UPDATE_LOCATION": {
+            return { ...state, location: action.payload }
         }
-        case "sqfeet": {
-            return { ...state, sqftone: action.payload }
+        case "UPDATE_SQUAREFEET": {
+            return { ...state, sqareFeet: action.payload }
         }
-        case "bedroom": {
-            return { ...state, bedone: action.payload }
+        case "UPDATE_BEDROOMS": {
+            return { ...state, bedRooms: action.payload }
         }
-        case "bath": {
-            return { ...state, bathone: action.payload }
+        case "UPDATE_BATHROOMS": {
+            return { ...state, bathRooms: action.payload }
         }
 
         case "Price_Projects":

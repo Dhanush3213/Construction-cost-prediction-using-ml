@@ -88,7 +88,9 @@ const SingleProject = () => {
                 <AiFillTags className="warranty-icon" />
                 <p>{packagename}</p>
               </div>
+
             </div>
+
 
             {/* <div className="product-data-info">
                             <p>
@@ -103,6 +105,9 @@ const SingleProject = () => {
                             </p>
                         </div> */}
             <hr />
+            <br />
+            {/* <iframe width="400rem" height="300rem" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=100&amp;hl=en&amp;q="+ {{location}} + "+(My%20Business%20Name)&amp;t=k&amp;z=18&amp;ie=UTF8&amp;iwloc=B&amp;output=embe"><a href="https://www.gps.ie/wearable-gps/" >adventure gps</a></iframe> */}
+
             {/* {
                             stock > 0 ? <AddToCart singleproduct={singleproduct} /> : <p className="outOfStock">Out Of Stock</p>
                         } */}

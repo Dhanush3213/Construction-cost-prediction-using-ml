@@ -4,13 +4,10 @@ import { BsArrowsMove } from 'react-icons/bs';
 import { AiFillTags } from 'react-icons/ai';
 import { FiLayers } from 'react-icons/fi';
 import { NavLink } from "react-router-dom";
-// import FormatPrice from "../Helpers/FormatPrice"
-
 
 const Project = ({ Home }) => {
-    // const { id, name, image, price, category } = curElem;
     const { title, sourceUrl, id } = Home;
-    const { clientname, floors, location, price, totalarea, packagename } = Home?.ProjectFields;
+    const { floors, location, price, totalarea, packagename } = Home?.ProjectFields;
 
     return (
         <NavLink to={`/project/${id}`}>

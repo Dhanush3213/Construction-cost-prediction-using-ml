@@ -17,10 +17,7 @@ const MainHeader = styled.header`
   }
 `;
 
-
-
 const Header = () => {
-
   return (
     <MainHeader>
       <NavLink to="/">

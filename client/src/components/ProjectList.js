@@ -9,11 +9,9 @@ const ProjectList = ({ HouseData }) => {
   const Wrapper = styled.section`
   
    padding: 9rem 0;
-   /* padding: 2rem 1rem; */
-   /* background-color: ${({ theme }) => theme.colors.bg}; */
   
    .grid{
-        gap: 6rem;  
+        gap: 10rem;  
    }
 
    figure {
@@ -25,20 +23,7 @@ const ProjectList = ({ HouseData }) => {
     overflow: hidden;
     /* transition: all 3s linear; */
     transition: .3s ease-in-out;
-    /* &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      transition: all 0.2s linear;
-      cursor: pointer;
-    }
-    &:hover::after {
-      width: 100%;
-    } */
+   
     &:hover img {
       transform: scale(1.2);
     }

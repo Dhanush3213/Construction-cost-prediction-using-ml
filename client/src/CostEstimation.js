@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useAppContext } from './context/AppContext';
 import styled from 'styled-components';
 import Project from './components/Project';
+import ChatBot from './ChatBot';
 const Wrapper = styled.section`
 
     body{
@@ -43,7 +44,7 @@ img {
     justify-content: center;
     align-items: center;
     max-width: 100rem;
-    min-height: 85vh;
+    /* min-height: 85vh; */
     width: 100%;
     padding: 0 2rem;
     margin: 0 auto;
@@ -405,40 +406,15 @@ const CostEstimation = () => {
     <>
       <Wrapper>
         <main className="main">
+
           <div className="container-cost">
-            <section className="wrapper">
-              <div className="heading">
-                <h1 className="text text-large">Price Prediction</h1>
-              </div>
-              <form className='form'>
-                <div className='input-control'>
-                  <label htmlFor="Location" className="input-label" hidden >Location :</label>
-                  <input type="text" name="location" className="input-field" value={location} placeholder="Enter location " onChange={e => setLocation(e.target.value)} />
-                </div>
-                <div className='input-control'>
-                  <label htmlFor="Location" className="input-label" hidden >Location :</label>
-                  <input type="number" value={sqft} onChange={e => setSqft(e.target.value)} name="location" className="input-field" placeholder="Enter Squarefeet " />
-                </div>
-                <div className='input-control'>
-                  <label htmlFor="Location" className="input-label" hidden >Location :</label>
-                  <input type="number" value={bhk} onChange={e => setBhk(e.target.value)} name="bhk" className="input-field" placeholder="Enter BHK " />
-                </div>
-                <div className='input-control'>
-                  <label htmlFor="Location" className="input-label" hidden >Location :</label>
-                  <input type="number" placeholder="No of bathrooms  " value={bathroom} onChange={e => setBathroom(e.target.value)} name="bathroom" className="input-field" />
-                </div>
+            <ChatBot />
 
-                <div className="input-control cost-button">
-                  <input type="submit" name="submit" onClick={handleSubmit} className="input-submit" value="Estimate Price" />
-                </div>
-              </form>
 
-              <div className='pridicated_price_Wrapper center'>
-                <p>Predicted Price: {pri_price} Lacks</p>
-              </div>
-
-            </section>
           </div>
+          {/* <div className='flex'>
+            <iframe width="1000rem" height="600rem" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=1000%25&amp;height=1000&amp;hl=en&amp;q={{rajaji nagar}}+(My%20Business%20Name)&amp;t=k&amp;z=18&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/" >adventure gps</a></iframe>
+          </div> */}
         </main>
 
         <div className='grid grid-three-column'>
@@ -447,29 +423,6 @@ const CostEstimation = () => {
           }
         </div>
       </Wrapper>
-
-
-
-      {/* <div className="App">
-        <div style={{ position: "relative", height: "800px", width: "700px" }}>
-          <MainContainer>
-            <ChatContainer>
-              <MessageList
-                scrollBehavior="smooth"
-                typingIndicator={isTyping ? <TypingIndicator content="ChatGPT is typing" /> : null}
-              >
-                {messages.map((message, i) => {
-                  console.log(message)
-                  return <Message key={i} model={message} />
-                })}
-              </MessageList>
-              <MessageInput placeholder="Type message here" onSend={handleSend} />
-            </ChatContainer>
-          </MainContainer>
-        </div>
-      </div> */}
-
-
     </>
   )
 }
