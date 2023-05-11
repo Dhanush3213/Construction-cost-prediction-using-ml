@@ -5,7 +5,6 @@ import About from "./CostEstimation"
 import Contact from "./Contact"
 import Projects from "./Projects"
 import SingleProject from "./SingleProject";
-import Wishlist from "./Wishlist"
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
@@ -63,7 +62,6 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <Provider store={store}> */}
       <BrowserRouter>
         <GlobalStyle />
         <Header />
@@ -75,7 +73,6 @@ const App = () => {
 
           <Route path="/projects" element={<Projects />}></Route>
           <Route path="/project/:id" element={<SingleProject />}></Route>
-          <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />} ></Route>
           <Route path="/logout" element={<Logout />}></Route>
@@ -86,7 +83,6 @@ const App = () => {
         </Routes>
         <Footer />
       </BrowserRouter>
-      {/* </Provider> */}
     </ThemeProvider>
 
   );

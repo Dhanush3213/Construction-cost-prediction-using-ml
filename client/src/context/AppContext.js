@@ -1,10 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
-// import axios from "axios";
 import reducer from "../reducers/AppReducer";
 import { HouseData } from "../Constants"
 // Creating the Context
 const AppContext = createContext();
-
 
 
 let loginState = () => {
@@ -26,11 +24,8 @@ const initialState = {
     bedRooms: "",
     bathRooms: ""
 
-    // products: [],
-    // featureProducts: [],
 };
 
-// console.log(initialState.featureProducts);
 // Provider for App
 const AppProvider = ({ children }) => {
 

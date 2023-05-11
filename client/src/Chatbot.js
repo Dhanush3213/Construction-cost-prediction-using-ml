@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { IoMdSend } from 'react-icons/io';
+import { MdOutlineClear } from 'react-icons/md';
 import { useAppContext } from './context/AppContext';
 
 const ChatBot = () => {
@@ -27,7 +28,6 @@ const ChatBot = () => {
         });
 
         const data = await res.json();
-        // setLocation(data.location)
 
         console.log(data.prediction)
         if (res.status === 400 || !data) {
@@ -49,7 +49,7 @@ const ChatBot = () => {
                     </div>
                     <hr />
 
-                    <div className='new_design'>
+                    <div className='one_chat'>
 
                         <div className="left" >
                             <img src='/images/chatImg.png' alt='msg-logo' />
@@ -64,16 +64,26 @@ const ChatBot = () => {
                                         setInputValue(e.target.value)
                                     }} />
                                 </div>
-                                <button className='input-submit ' onClick={(e) => {
-                                    e.preventDefault();
-                                    dispatch({ type: "UPDATE_LOCATION", payload: inputValue })
-                                    setInputValue("");
-                                }}><IoMdSend /></button>
+                                <div className='clear-send-section'>
+                                    <button className='input-submit clear-send' onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch({ type: "UPDATE_LOCATION", payload: inputValue })
+                                        setInputValue("");
+                                    }}><IoMdSend /></button>
+                                    <button className='input-submit clear-send' onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch({ type: "UPDATE_LOCATION", payload: "" });
+                                        dispatch({ type: "UPDATE_SQUAREFEET", payload: "" });
+                                        dispatch({ type: "UPDATE_BEDROOMS", payload: "" });
+                                        dispatch({ type: "UPDATE_BATHROOMS", payload: "" });
+                                        dispatch({ type: "PRE_PRICE", payload: 0 });
+                                    }}><MdOutlineClear /></button>
+                                </div>
                             </form>
                         </div>
                     </div>
 
-                    <div className={location ? 'new_design ' : 'new_design none'} >
+                    <div className={location ? 'one_chat ' : 'one_chat none'} >
                         <div className="left" >
                             <img src='/images/chatImg.png' alt='msg-logo' />
                             <p>Enter SquareFeet ?</p>
@@ -85,18 +95,28 @@ const ChatBot = () => {
                                     <input type="text" name="location" className="input-field" value={sqareFeet || inputValue} placeholder="Enter Sqfeet " onChange={e => {
                                         setInputValue(e.target.value)
                                     }} />
+
+                                </div>
+                                <div className='clear-send-section'>
+                                    <button className='input-submit clear-send' onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch({ type: "UPDATE_SQUAREFEET", payload: inputValue })
+                                        setInputValue("");
+                                    }}><IoMdSend /></button>
+                                    <button className='input-submit clear-send' onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch({ type: "UPDATE_SQUAREFEET", payload: "" });
+                                        dispatch({ type: "UPDATE_BEDROOMS", payload: "" });
+                                        dispatch({ type: "UPDATE_BATHROOMS", payload: "" });
+                                        dispatch({ type: "PRE_PRICE", payload: 0 });
+                                    }}><MdOutlineClear /></button>
                                 </div>
 
-                                <button className='input-submit ' onClick={(e) => {
-                                    e.preventDefault();
-                                    dispatch({ type: "UPDATE_SQUAREFEET", payload: inputValue })
-                                    setInputValue("");
-                                }}><IoMdSend /></button>
                             </form>
                         </div>
                     </div>
 
-                    <div className={sqareFeet ? 'new_design ' : 'new_design none'} >
+                    <div className={sqareFeet ? 'one_chat ' : 'one_chat none'} >
                         <div className="left" >
                             <img src='/images/chatImg.png' alt='msg-logo' />
                             <p>Enter BedRoom ?</p>
@@ -111,16 +131,24 @@ const ChatBot = () => {
 
                                     }} />
                                 </div>
-                                <button className='input-submit ' onClick={(e) => {
-                                    e.preventDefault();
-                                    dispatch({ type: "UPDATE_BEDROOMS", payload: inputValue })
-                                    setInputValue("");
-                                }}><IoMdSend /></button>
+                                <div className='clear-send-section'>
+                                    <button className='input-submit clear-send' onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch({ type: "UPDATE_BEDROOMS", payload: inputValue })
+                                        setInputValue("");
+                                    }}><IoMdSend /></button>
+                                    <button className='input-submit clear-send' onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch({ type: "UPDATE_BEDROOMS", payload: "" });
+                                        dispatch({ type: "UPDATE_BATHROOMS", payload: "" });
+                                        dispatch({ type: "PRE_PRICE", payload: 0 });
+                                    }}><MdOutlineClear /></button>
+                                </div>
                             </form>
                         </div>
                     </div>
 
-                    <div className={bedRooms ? 'new_design ' : 'new_design none'} >
+                    <div className={bedRooms ? 'one_chat ' : 'one_chat none'} >
                         <div className="left" >
                             <img src='/images/chatImg.png' alt='msg-logo' />
                             <p>Enter Your BathRooms ?</p>
@@ -133,18 +161,24 @@ const ChatBot = () => {
                                         setInputValue(e.target.value)
                                     }} />
                                 </div>
-                                <button className='input-submit ' onClick={(e) => {
-                                    e.preventDefault();
-                                    dispatch({ type: "UPDATE_BATHROOMS", payload: inputValue })
-                                    setInputValue("");
-                                }}><IoMdSend /></button>
-
-
+                                <div className='clear-send-section'>
+                                    <button className='input-submit clear-send' onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch({ type: "UPDATE_BATHROOMS", payload: inputValue })
+                                        setInputValue("");
+                                    }}><IoMdSend /></button>
+                                    <button className='input-submit clear-send' onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch({ type: "UPDATE_BATHROOMS", payload: "" });
+                                        dispatch({ type: "PRE_PRICE", payload: 0 });
+                                    }}><MdOutlineClear /></button>
+                                </div>
                             </form>
 
                         </div>
                         <div className={bathRooms ? 'input-control cost-button' : 'input-control cost-button none'}>
                             <input type="submit" name="submit" onClick={handleSubmit} className={bathRooms ? 'input-submit cost-input-button' : 'input-submit cost-input-button none'} value="Estimate Price" />
+
                         </div>
                         <div className={bathRooms ? 'pridicated_price_Wrapper center' : 'pridicated_price_Wrapper center none'}>
                             <p>Predicted Price: {pri_price} Lacks</p>
@@ -158,11 +192,9 @@ const ChatBot = () => {
 
 const Wrapper = styled.div`
 display: flex;
-/* align-items: center; */
 justify-content: center;
 padding: 8rem 0 5rem 0;
 text-align: center;
-
 
 .chat_bot{
     width: 45rem;
@@ -196,15 +228,12 @@ text-align: center;
     border-radius: 2rem;
     padding: 0rem 1.5rem;
     box-shadow: 1px 4px 4px 0px rgba(0,0,0,0.75);
-/* -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75); */
-/* -moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75); */
 
 }
 
 .right{
     display: flex;
     justify-content: right;
-    /* justify-content: left; */
 margin-top: 2rem;
 }
 
@@ -247,7 +276,6 @@ box-shadow: 1px 3px 3px 0px rgba(0,0,0,0.75);
         font-family: inherit;
         font-size:2rem;
         font-weight: 500;
-        /* line-height: inherit; */
         cursor: pointer;
         min-width: 20%;
         height: auto;
@@ -261,6 +289,16 @@ box-shadow: 1px 3px 3px 0px rgba(0,0,0,0.75);
      
         text-transform: capitalize;
         text-rendering: optimizeLegibility;
+}
+.clear-send-section{
+    margin-right: .3rem;
+}
+
+.clear-send{
+    padding: .55rem .5rem;
+    font-size: 1.8rem;
+
+
 }
 
 .mr-r-1{
@@ -287,17 +325,17 @@ box-shadow: 1px 3px 3px 0px rgba(0,0,0,0.75);
     margin-top: 2rem;
    font-size: 1.8rem;
    font-family: inherit;
-        font-weight: 500;
+    font-weight: 500;
 }
 
 .cost-button{
     display:flex ;
-    justify-content: center ;
+    justify-content: space-between ;
     align-items: center ;
 }
 .cost-input-button{
 color: white;
-    background-color: #1a73e8;
+background-color: #1a73e8;
 }
 .none{
     display: none !important;

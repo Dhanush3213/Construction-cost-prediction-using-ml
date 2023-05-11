@@ -123,7 +123,7 @@ export const HouseData = [
             "floors": "G+1",
             "location": "Bangalore",
             "packagename": "Premium",
-            "price": 34.65,
+            "price": 83.65,
             "totalarea": "1650 SQFT",
         },
         "ProjectPlans": {

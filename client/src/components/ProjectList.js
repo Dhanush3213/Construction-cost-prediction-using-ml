@@ -1,15 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
-// import { useFilterContext } from '../../context/filterContext';
 import Project from "./Project"
 
 const ProjectList = ({ HouseData }) => {
 
 
   const Wrapper = styled.section`
-  
    padding: 9rem 0;
-  
    .grid{
         gap: 10rem;  
    }
@@ -21,7 +18,6 @@ const ProjectList = ({ HouseData }) => {
     align-items: center;
     position: relative;
     overflow: hidden;
-    /* transition: all 3s linear; */
     transition: .3s ease-in-out;
    
     &:hover img {
@@ -48,8 +44,6 @@ const ProjectList = ({ HouseData }) => {
   }
 
   .card {
-    /* background-color: #fff; */
-   /* background-color: ${({ theme }) => theme.colors.bg}; */
     border-radius: 1rem;
     width: 350px;
     margin-bottom: 15rem;

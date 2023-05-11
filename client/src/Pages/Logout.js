@@ -4,7 +4,7 @@ import { useAppContext } from '../context/AppContext';
 
 const Logout = () => {
     const navigate = useNavigate();
-    const { state, dispatch } = useAppContext();
+    const { dispatch } = useAppContext();
 
     useEffect(() => {
         fetch("/logout", {
@@ -16,8 +16,6 @@ const Logout = () => {
             credentials: "include",
         }).then((res) => {
             dispatch({ type: "USER", payload: false });
-            // type is name for the action that is going perfrom in reducer
-            // its like msg we are sending
             navigate("/Login", { replace: true });
         }).catch((e) => {
             console.log(e);

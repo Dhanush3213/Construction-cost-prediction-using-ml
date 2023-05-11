@@ -1,12 +1,8 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 // import PageNavigation from "./components/PageNavigation";
 import MyImage from "./components/Myimage";
 import { Container } from "../src/components/styles/Container";
-// import FormatPrice from "./Helpers/FormatPrice";
-import { MdSecurity } from "react-icons/md";
-import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import { useAppContext } from "./context/AppContext";
 
 import { ImLocation } from 'react-icons/im';
@@ -30,7 +26,6 @@ const SingleProject = () => {
     sourceUrl,
   } = singleproject[0];
 
-  // console.log(singleproject);
 
   const {
     price,
@@ -60,14 +55,9 @@ const SingleProject = () => {
           {/* product data  */}
           <div className="product-data">
             <h2>{title}</h2>
-            {/* <Stars stars={stars} reviews={reviews} /> */}
             <p className="product-data-price product-data-real-price">
               Price: {price} lakhs
             </p>
-            <p className="product-data-price product-data-real-price">
-              {/* Deal of the Day: <FormatPrice price={price} /> */}
-            </p>
-            {/* <p>{description}</p> */}
             <div className="product-data-warranty">
               <div className="product-warranty-data">
                 <ImLocation className="warranty-icon" />
@@ -92,25 +82,12 @@ const SingleProject = () => {
             </div>
 
 
-            {/* <div className="product-data-info">
-                            <p>
-                                Available:
-                                <span style={{ color: stock > 0 ? "green" : "red" }}> {stock > 0 ? "In Stock" : "Not Available"}</span>
-                            </p>
-                            <p>
-                ID : <span> {id} </span>
-              </p>
-        <p>
-                                Brand :<span> {company} </span>
-                            </p>
-                        </div> */}
+
             <hr />
             <br />
             {/* <iframe width="400rem" height="300rem" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=100&amp;hl=en&amp;q="+ {{location}} + "+(My%20Business%20Name)&amp;t=k&amp;z=18&amp;ie=UTF8&amp;iwloc=B&amp;output=embe"><a href="https://www.gps.ie/wearable-gps/" >adventure gps</a></iframe> */}
 
-            {/* {
-                            stock > 0 ? <AddToCart singleproduct={singleproduct} /> : <p className="outOfStock">Out Of Stock</p>
-                        } */}
+
           </div>
         </div>
       </Container>

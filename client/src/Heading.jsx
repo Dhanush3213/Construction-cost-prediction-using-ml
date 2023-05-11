@@ -1,12 +1,8 @@
 import React from "react"
 
-
 const Heading = ({ title, subtitle }) => {
   const styleObj = {
-    // fontSize: 14,
-    // color: "#4a54f1",
     textAlign: "center",
-    // paddingTop: "100px",
   }
   return (
     <>

@@ -1,11 +1,9 @@
-
-
-
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppContext } from './context/AppContext';
 import styled from 'styled-components';
 import Project from './components/Project';
-import ChatBot from './ChatBot';
+import ChatBot from "./ChatBot";
+
 const Wrapper = styled.section`
 
     body{
@@ -17,7 +15,7 @@ const Wrapper = styled.section`
         background: #f1f5f9;
       }      
            
-a,
+/* a,
 button {
     font-family: inherit;
     font-size: inherit;
@@ -27,7 +25,7 @@ button {
     outline: none;
     background: none;
     text-decoration: none;
-}
+} */
 
 img {
     display: block;
@@ -44,62 +42,12 @@ img {
     justify-content: center;
     align-items: center;
     max-width: 100rem;
-    /* min-height: 85vh; */
     width: 100%;
     padding: 0 2rem;
     margin: 0 auto;
-}
-  
-
-   figure {
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    /* transition: all 3s linear; */
-    transition: .3s ease-in-out;
-    /* &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      transition: all 0.2s linear;
-      cursor: pointer;
-    }
-    &:hover::after {
-      width: 100%;
-    } */
-    &:hover img {
-      transform: scale(1.2);
-    }
-    img {
-      max-width: 100%;
-      margin-top: 1.5rem;
-      height: 22rem;
-      transition: all 0.2s linear;
-    }
-
-    .caption {
-      position: absolute;
-      top: 10%;
-      right: 3%;
-      text-transform: uppercase;
-      background-color: ${({ theme }) => theme.colors.bg};
-      color: ${({ theme }) => theme.colors.helper};
-      padding: 0.7rem 1.4rem;
-      font-size: .8rem;
-      border-radius: 2rem;
-    }
-  }
+} 
 
   .card {
-    /* background-color: #fff; */
-   /* background-color: ${({ theme }) => theme.colors.bg}; */
     border-radius: 1rem;
     width: 350px;
     margin-bottom: 15rem;
@@ -354,6 +302,16 @@ img {
     -o-object-fit: cover;
     object-fit: cover;
 }
+.section_project_samples{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin:10rem 0rem 5rem 0rem;
+  }
+.none{
+  display: none !important;
+}
+
 
 @media screen and (max-width: 1280px) {
     .main .wrapper {
@@ -363,44 +321,8 @@ img {
 }  
 
 `
-
 const CostEstimation = () => {
-  const { pri_price, dispatch, price_Based_projects } = useAppContext();
-
-  const [location, setLocation] = useState("");
-  const [sqft, setSqft] = useState();
-  const [bathroom, setBathroom] = useState();
-  const [bhk, setBhk] = useState();
-
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    let sqftint = parseInt(sqft);
-    let bathroomInt = parseInt(bathroom);
-    let bhkInt = parseInt(bhk);
-
-    const res = await fetch('http://127.0.0.1:8000/api/predict/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        location: location,
-        sqft: sqftint,
-        bhk: bathroomInt,
-        bath: bhkInt,
-      })
-    });
-
-    const data = await res.json();
-    setLocation(data.location)
-
-    console.log(data.prediction)
-    if (res.status === 400 || !data) {
-      window.alert("Please Wait or try again");
-    } else {
-      dispatch({ type: "PRE_PRICE", payload: data.prediction });
-      dispatch({ type: "Price_Projects" });
-    }
-  };
+  const { pri_price, price_Based_projects } = useAppContext();
 
   return (
     <>
@@ -409,15 +331,15 @@ const CostEstimation = () => {
 
           <div className="container-cost">
             <ChatBot />
-
-
           </div>
-          {/* <div className='flex'>
-            <iframe width="1000rem" height="600rem" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=1000%25&amp;height=1000&amp;hl=en&amp;q={{rajaji nagar}}+(My%20Business%20Name)&amp;t=k&amp;z=18&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/" >adventure gps</a></iframe>
-          </div> */}
+
+          <div className={pri_price ? 'flex' : 'flex none'}>
+            <iframe width="1000rem" height="500rem" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=1000%25&amp;height=1000&amp;hl=en&amp;q={{banglore}}+(My%20Business%20Name)&amp;t=k&amp;z=18&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/" >adventure gps</a></iframe>
+          </div>
+
         </main>
 
-        <div className='grid grid-three-column'>
+        <div className={pri_price ? 'grid grid-three-column section_project_samples' : 'grid grid-three-column section_project_samples none'} >
           {
             price_Based_projects.map((Home) => <Project Home={Home} key={Home.id} />)
           }

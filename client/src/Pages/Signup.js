@@ -397,6 +397,9 @@ import React, { useState } from 'react'
 import styled from "styled-components";
 import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/AppContext"
+import { auth, provider } from "../config"
+import { signInWithPopup } from "firebase/auth";
 
 const Wrapper = styled.section`
 :root {
@@ -652,8 +655,8 @@ img {
 `
 
 const SignUp = () => {
-
     const navigate = useNavigate();
+    const { dispatch } = useAppContext();
 
 
     const [user, setuser] = useState({
@@ -694,23 +697,26 @@ const SignUp = () => {
             }),
         });
 
-        console.log(" responsoe from backed " + res);
-
         const data = await res.text();
 
         if (data.status === 422 || !data) {
             window.alert("invalid registration");
-            //  console.log("invalid registration");
         } else {
             window.alert(" registration successfull u can login");
             navigate("/Login");
         }
     };
 
+    const handleClick = () => {
+        signInWithPopup(auth, provider).then((data) => {
+            dispatch({ type: "USER", payload: true });
+            navigate("/");
+        })
+
+    }
+
     return (
         <Wrapper>
-            {/* <main> */}
-            {/* <body> */}
             <main className="main">
                 <div className="container-login">
                     <section className="wrapper">
@@ -761,30 +767,16 @@ const SignUp = () => {
                             <span className="striped-line"></span>
                         </div>
                         <div className="method">
-                            <div className="method-control">
+                            <div className="method-control" onClick={handleClick}>
                                 <a href="#" className="method-action">
                                     <i className="ion ion-logo-google"></i>
-                                    <span>Sign Up with Google</span>
-                                </a>
-                            </div>
-                            <div className="method-control">
-                                <a href="#" className="method-action">
-                                    <i className="ion ion-logo-facebook"></i>
-                                    <span>Sign Up with Facebook</span>
-                                </a>
-                            </div>
-                            <div className="method-control">
-                                <a href="#" className="method-action">
-                                    <i className="ion ion-logo-apple"></i>
-                                    <span>Sign Up with Apple</span>
+                                    <span >Sign in with Google </span>
                                 </a>
                             </div>
                         </div>
                     </section>
                 </div>
             </main>
-            {/* </body> */}
-            {/* </main> */}
         </Wrapper>
     )
 }

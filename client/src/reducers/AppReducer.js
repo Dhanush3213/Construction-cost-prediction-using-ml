@@ -1,5 +1,4 @@
 
-
 const reducer = (state, action) => {
     switch (action.type) {
         case "USER": {
@@ -22,7 +21,6 @@ const reducer = (state, action) => {
         }
 
         case "Price_Projects":
-            // console.log(state.pri_price);
             if (state.pri_price) {
                 let low = 0;
                 let high = 0;
@@ -33,8 +31,6 @@ const reducer = (state, action) => {
                         return curElem;
                     }
                 })
-                console.log(tempData);
-
                 return { ...state, price_Based_projects: tempData }
 
             }

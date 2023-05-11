@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React from "react";
 
 const Contact = () => {
   const Wrapper = styled.section`
@@ -39,7 +39,9 @@ const Contact = () => {
   return (
     <Wrapper>
       <h2 className="common-heading">Contact page</h2>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d74719.08904262018!2d74.69497915976768!3d13.617539029113571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbc912ae3b16e37%3A0x2fecb6210917fad7!2sUVA%20MERIDIAN%20AMUSEMENT%20PARK!5e0!3m2!1sen!2sin!4v1667928638197!5m2!1sen!2sin" width="100%" height="400" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+      <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=1000%25&amp;height=1000&amp;hl=en&amp;q={{banglore}}+(My%20Business%20Name)&amp;t=k&amp;z=18&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/" >adventure gps</a></iframe>
+
+      {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d74719.08904262018!2d74.69497915976768!3d13.617539029113571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbc912ae3b16e37%3A0x2fecb6210917fad7!2sUVA%20MERIDIAN%20AMUSEMENT%20PARK!5e0!3m2!1sen!2sin!4v1667928638197!5m2!1sen!2sin" width="100%" height="400" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe> */}
       <div className="container">
         <div className="contact-form">
           <form
